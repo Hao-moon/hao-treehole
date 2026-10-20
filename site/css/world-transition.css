@@ -1,0 +1,27 @@
+/* The mask opens a passage in the photographed room; the destination is live. */
+.world-transition{--origin-x:53%;--origin-y:70%;--reveal-radius:0px;--edge-opacity:0;--passage:#d8b980;--passage-glow:#ead6a46b;position:fixed!important;inset:0!important;width:100vw!important;max-width:none!important;height:100dvh!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;overflow:hidden;background:transparent!important;outline:0;isolation:isolate;color:#f5f0e5}
+.world-transition[data-to=persona]{--passage:#ed1d46;--passage-glow:#ed1d4663}
+.world-transition::backdrop{background:transparent}
+.world-transit-scene,.world-transit-preview{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.world-transition:is([data-phase=revealing],[data-phase=preparing]) .world-transit-scene{mask-image:radial-gradient(circle at var(--origin-x) var(--origin-y),transparent max(0px,calc(var(--reveal-radius) - 26px)),#000 calc(var(--reveal-radius) + 38px));-webkit-mask-image:radial-gradient(circle at var(--origin-x) var(--origin-y),transparent max(0px,calc(var(--reveal-radius) - 26px)),#000 calc(var(--reveal-radius) + 38px))}
+.world-transition[data-to=persona]:is([data-phase=revealing],[data-phase=preparing]) .world-transit-scene{mask-image:radial-gradient(circle at var(--origin-x) var(--origin-y),transparent max(0px,calc(var(--reveal-radius) - 3px)),#000 calc(var(--reveal-radius) + 12px));-webkit-mask-image:radial-gradient(circle at var(--origin-x) var(--origin-y),transparent max(0px,calc(var(--reveal-radius) - 3px)),#000 calc(var(--reveal-radius) + 12px))}
+.world-transit-edge{position:absolute;left:var(--origin-x);top:var(--origin-y);width:calc(var(--reveal-radius)*2);height:calc(var(--reveal-radius)*2);border-radius:50%;transform:translate(-50%,-50%);border:1px solid var(--passage);box-shadow:0 0 21px 3px var(--passage-glow),inset 0 0 16px var(--passage-glow);opacity:var(--edge-opacity);pointer-events:none}
+.world-transition[data-to=persona] .world-transit-edge{border:2px solid var(--passage);box-shadow:4px 0 0 #f3eddf80,-3px 0 0 #0d0c1099,0 0 14px var(--passage-glow)}
+.world-transit-origin{position:absolute;left:var(--origin-x);top:var(--origin-y);width:68px;height:68px;transform:translate(-50%,-50%);pointer-events:none}
+.world-transit-origin i{position:absolute;inset:0;border:1px solid #c91431;border-radius:50%;box-shadow:0 0 12px #e719353b;animation:world-mask-pulse 1500ms ease-out infinite}
+.world-transit-origin i:nth-child(2){animation-delay:350ms}.world-transit-origin i:nth-child(3){animation-delay:700ms}
+.world-transition[data-phase=revealing] .world-transit-origin{opacity:0;transition:opacity 300ms}
+.world-transit-caption{position:absolute;left:clamp(24px,4vw,70px);bottom:clamp(24px,5vh,60px);padding:14px 22px 14px 18px;border-left:2px solid #c91431;background:linear-gradient(90deg,#0e171bc9,#0e171b00);text-shadow:0 1px 7px #050c12;display:grid;gap:5px;pointer-events:none}
+.world-transit-route{font:10px/1.3 ui-monospace,Consolas,monospace;letter-spacing:.24em;color:#e4c9ad}
+#world-transit-title{font:500 clamp(20px,2.2vw,32px)/1.4 "Noto Serif SC",SimSun,serif;letter-spacing:.06em;color:#f5f0e5}
+.world-transit-status{font:11px/1.6 sans-serif;letter-spacing:.1em;color:#d0d9d4}
+.world-transition[data-phase=revealing] .world-transit-caption{animation:world-caption-leave 1350ms both}
+@keyframes world-mask-pulse{0%{transform:scale(.8);opacity:.8}100%{transform:scale(2.3);opacity:0}}
+@keyframes world-caption-leave{0%,65%{opacity:1;transform:none}100%{opacity:0;transform:translateY(7px)}}
+@media(prefers-reduced-motion:reduce){.world-transit-origin,.world-transit-edge{display:none}.world-transition .world-transit-scene{mask-image:none!important;-webkit-mask-image:none!important}.world-transition[data-phase=revealing] .world-transit-caption{animation:none}}
+
+
+html[data-world-switching=preparing] #room{visibility:hidden}
+.world-transition[data-phase=preparing] .world-transit-scene{animation:world-prepare-breathe 800ms ease-out both}
+@keyframes world-prepare-breathe{from{transform:scale(1)}to{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.world-transition[data-phase=preparing] .world-transit-scene{animation:none}}

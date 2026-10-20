@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e31336">
+  <meta name="description" content="hao的树洞，一个可以阅读、聆听和收藏灵感的漫画桌面。">
+  <title>hao的树洞 · 绯红夜航</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="/css/persona-ui.css">
+  <link rel="stylesheet" href="/css/object-cards.css">
+  <link rel="stylesheet" href="/css/character-card.css">
+  <link rel="stylesheet" href="/css/desk-objects.css">
+  <link rel="stylesheet" href="/css/book-reader.css">
+  <link rel="stylesheet" href="/css/music-controls.css">
+  <link rel="stylesheet" href="/css/plant.css">
+  <link rel="stylesheet" href="/css/turntable.css">
+  <link rel="stylesheet" href="/css/explore.css">
+  <link rel="stylesheet" href="/css/games.css">
+  <link rel="stylesheet" href="/css/reader.css">
+  <link rel="stylesheet" href="/css/soundscape.css">
+  <link rel="stylesheet" href="/css/computer.css">
+  <link rel="stylesheet" href="/css/board.css">
+  <link rel="stylesheet" href="/css/global-redesign.css">
+  <link rel="preload" href="/assets/scene/persona5-base-medium.webp" as="image">
+<script>if(new URLSearchParams(location.search).get("world")==="ghostblade")document.documentElement.dataset.world="ghostblade";</script>
+<link rel="stylesheet" href="/css/ghostblade.css">
+<link rel="stylesheet" href="/css/world-switch.css">
+<link rel="stylesheet" href="/css/world-transition.css">
+</head>
+<body>
+  <main id="room" aria-label="hao的树洞，个人桌面">
+    <img id="fallback" src="/assets/scene/persona5.webp" alt="红黑白漫画桌面，包含电脑、银白耳机、DJ 唱盘、书本、轨道雕塑手办、掌机和游戏收藏" hidden>
+    <canvas id="scene" aria-label="拖动平移桌面，滚轮缩放。聚焦后可用方向键移动，或通过探索菜单打开物件。" tabindex="0"></canvas>
+    <canvas id="empty-turntable-slot" aria-hidden="true" hidden></canvas>
+    <canvas id="desktop-turntable" aria-hidden="true"></canvas>
+    <canvas id="desktop-figure" aria-hidden="true"></canvas>
+    <canvas id="desktop-book" aria-hidden="true"></canvas>
+    <canvas id="room-plant" aria-hidden="true"></canvas>
+    <div class="scene-shade" aria-hidden="true"></div>
+    <header class="masthead">
+      <button class="bgm-toggle" id="bgm-toggle" data-bgm-toggle aria-label="开启背景音乐" aria-pressed="false" hidden>BGM</button>
+    </header>
+    <button id="world-button" class="world-button" data-open="world" aria-label="世界信标，切换世界"><span>切换世界</span></button>
+    <div id="hot-label" class="hot-label" aria-hidden="true" hidden></div>
+    <div id="object-markers" aria-hidden="true" hidden></div>
+    <div class="exploration">
+      <button id="explore-toggle" aria-expanded="false" aria-controls="explore-drawer">探索</button>
+      <aside id="explore-drawer" aria-label="探索桌面" hidden>
+        <p id="explore-help">点击桌上的物件，打开各自的收藏。拖动环顾，滚轮靠近。</p>
+        <button id="hint-toggle" class="explore-action" data-scene-control data-dismiss-explore aria-pressed="false">显示物件线索</button>
+        <button id="reset-view" class="explore-action" data-scene-control data-dismiss-explore>回到全景</button>
+        <button class="explore-action" data-open="music">声音与歌单 <span aria-hidden="true">↗</span></button>
+        <details id="object-shortcuts">
+          <summary>更多工具与物件</summary>
+          <div class="view-tools" data-scene-control aria-label="视角工具">
+            <span>调整视角</span>
+            <button id="zoom-out" aria-label="缩小视角">−</button>
+            <button id="zoom-in" aria-label="放大视角">＋</button>
+          </div>
+          <nav class="explore-links" aria-label="直接打开桌面物件">
+            <button data-open="computer">电脑</button><button data-open="books">书籍</button>
+            <button data-open="music">音乐</button><button data-open="headphones">耳机</button>
+            <button data-open="about">树洞</button><button data-open="asuka">手办</button>
+            <button data-open="games">游戏</button><button data-open="tower">主机</button>
+            <button data-open="plant">植物</button>
+            <button data-open="board-gallery">影像</button><button data-open="board-projects">项目</button><button data-open="board-links">网址</button><button data-open="board-quotes">摘录</button><button data-open="world">世界</button>
+          </nav>
+          <p class="explore-keys" data-scene-control>聚焦桌面后：方向键环顾，＋／− 缩放，Home 回到全景。</p>
+        </details>
+      </aside>
+    </div>
+  </main>
+  <section id="loading" class="loading" aria-live="polite">
+    <div class="loading-mark">树洞</div><p id="loading-message">正在唤醒你的桌面…</p><button id="retry" hidden>重新加载</button>
+  </section>
+  <dialog id="panel" class="panel" aria-labelledby="panel-title">
+    <button id="close-panel" class="panel-close" aria-label="返回桌面"><span>返回桌面</span> ↗</button>
+    <div class="card-fx" aria-hidden="true"><div class="page-slash"></div></div>
+    <div class="object-page">
+      <header class="object-heading"><span id="panel-kicker"></span><h1 id="panel-title"></h1></header>
+      <div id="panel-content" class="panel-content"></div>
+    </div>
+  </dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <audio id="audio" preload="metadata"></audio>
+  <audio id="bgm-audio" preload="none" loop></audio>
+  <noscript><div class="noscript">请开启浏览器的脚本功能，以探索桌面和使用收藏。</div></noscript>
+  <script type="importmap">{"imports":{"three":"/vendor/three/three.module.js","three/addons/":"/vendor/three/addons/"}}</script>
+  <script src="/js/boot-guard.js"></script>
+  <script type="module" src="/js/world-transition.js"></script>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

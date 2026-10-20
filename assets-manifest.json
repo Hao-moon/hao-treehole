@@ -1,0 +1,299 @@
+{
+  "edition": "original-demo",
+  "assets": [
+    {
+      "path": "site/assets/audio/room-tone.wav",
+      "bytes": 1058444,
+      "sha256": "b5f954a5590439c26128ac7f0c311913f96afe9d385cb9ec3111b05567b0c673",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/books/窗外最后一班车.txt",
+      "bytes": 8364,
+      "sha256": "67946c17016d89f9ea1a8e7b3222401c6478d8fd19f8b58a0ad64cb62772bdc4",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/collectibles/desktop-camera.json",
+      "bytes": 621,
+      "sha256": "2665c8eeada90b8968a5bec3999ae2177be887af17baab3af786ed38bf617ee0",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/collectibles/models/orbit.glb",
+      "bytes": 123628,
+      "sha256": "371ab8fdcb1b1c7f1f1c3926f67c6b80fd8ff46028231cd7adefa00155ece6ac",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/games/afterhours.png",
+      "bytes": 12631,
+      "sha256": "6ece43a7f6f8218d3501efec5ed0a916fdeb8768382810a5d48b77de7d5bcc8f",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/games/orbit.png",
+      "bytes": 10442,
+      "sha256": "e7050218e403b7474161ed966eb347e1c0c6b72b882043d2e8adbdcdb0ae608d",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/board-gallery.png",
+      "bytes": 27861,
+      "sha256": "e47135d052260f0932b2ac7a47c21443b08fbd1c803f9b7cbb3220b7c408e7a9",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/board-links.png",
+      "bytes": 17657,
+      "sha256": "25315b0c810829c1729dc807dd70cdcc9a6869520f1db3e7003e1eeb641ec664",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/board-projects.png",
+      "bytes": 31193,
+      "sha256": "17baa4dd2cfcbc0a200174ab4f409272489ffe445953a0a01328e7141a8cd18b",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/board-quotes.png",
+      "bytes": 28605,
+      "sha256": "0dc3472c62d051087c6e5750efc7e919a7340464e571611e142b0d942f7eeb46",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/book-cover.png",
+      "bytes": 24916,
+      "sha256": "6d68eef8fe79ad1412e2bf294e75ec716f557bd96508c586adfa9b123c063853",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/hot-base.png",
+      "bytes": 42973,
+      "sha256": "5aa9c32b9a09986afbd3a6c4f855f7fcd0d83c9a64a9364cc846e7b322e99ddf",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/mask-icon.png",
+      "bytes": 2596,
+      "sha256": "8fef5eebf69b23f3d566a2cecae83818f8ecdbd0160dd306154137cecc4dc764",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/mission-profile.png",
+      "bytes": 26252,
+      "sha256": "67e1436d4f711cedb9915f6f48f7ac49242587863c0fba8399845ada81eedae5",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/persona5-base-medium.webp",
+      "bytes": 164054,
+      "sha256": "426a234537749da4066091533d51c5baeae6abd467b234ee27f741d84af53efc",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/persona5-base-preview.webp",
+      "bytes": 71648,
+      "sha256": "6672baf7cdf46c210069fe001ea8ede775fd03845be9bc2daceb617474fad86a",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/persona5-base.webp",
+      "bytes": 164054,
+      "sha256": "426a234537749da4066091533d51c5baeae6abd467b234ee27f741d84af53efc",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/persona5-preview.webp",
+      "bytes": 66682,
+      "sha256": "e46a1ea9d56b5baf8c781124ce596924b9a074d646b22021be3fcfa27b09a067",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/persona5.webp",
+      "bytes": 164054,
+      "sha256": "426a234537749da4066091533d51c5baeae6abd467b234ee27f741d84af53efc",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/scene-interactions.json",
+      "bytes": 109921,
+      "sha256": "1a5900cb78fc3540f02e1d763467900605736d8917e3ba1fc0b2f5c979ccb076",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/scene.json",
+      "bytes": 3241,
+      "sha256": "acc29bdb68ef70e31ddb9675e823070319602f96e18c1524b76cac8ff52e48a7",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/scene/screen.png",
+      "bytes": 25422,
+      "sha256": "fa156852a3549a2b2649e192a4fc6f692706353c75029535306217043e48990c",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/screens/hills-wallpaper.png",
+      "bytes": 29283,
+      "sha256": "cb4e949f312ab4cd56a64c43269e3db18a29ec68897eb93ea674fd0cfabbe01a",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/screens/night-wallpaper.png",
+      "bytes": 25422,
+      "sha256": "fa156852a3549a2b2649e192a4fc6f692706353c75029535306217043e48990c",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/screens/orbit-wallpaper.png",
+      "bytes": 32408,
+      "sha256": "8dd9b9b80c2b556cff8631665d4610e71ac8acf0680516e03edf04a5c18a7128",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/turntable/empty-desktop-slot.webp",
+      "bytes": 7010,
+      "sha256": "5aeeb141437dbd8de990b33535cf3eed369d56ddfa271ebc7e9f77f1984942b1",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/turntable/hao-turntable.glb",
+      "bytes": 744816,
+      "sha256": "b3b4e0b512c426865ba34d56e552c071c61092071fab8e5f46079c3034f52962",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/turntable/orbit-decal.png",
+      "bytes": 2596,
+      "sha256": "8fef5eebf69b23f3d566a2cecae83818f8ecdbd0160dd306154137cecc4dc764",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/turntable/source.json",
+      "bytes": 277,
+      "sha256": "357cc90853ab71ef2c620f84db6a85cdb869f946e34104fc03abfde5e4ef79ac",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/worlds/ghostblade/base-medium.webp",
+      "bytes": 170160,
+      "sha256": "24a0dc851620584e64a07b51838d8c3653313f104279c9c8d77a4365ed101a8e",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/worlds/ghostblade/base-preview.webp",
+      "bytes": 67210,
+      "sha256": "c582d23f36591619a5a938f3be15c326e83470c30ee5b044942ec17f48137636",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/worlds/ghostblade/base.webp",
+      "bytes": 170160,
+      "sha256": "24a0dc851620584e64a07b51838d8c3653313f104279c9c8d77a4365ed101a8e",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/worlds/ghostblade/board-gallery.png",
+      "bytes": 27861,
+      "sha256": "efe31c559b7fc1a821f6feae4c31a38a883641d9eaaf6a7860f235eee15b2aeb",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/worlds/ghostblade/board-links.png",
+      "bytes": 17658,
+      "sha256": "7bbd10545b03af38190321498bcfbdde11fa7b4e8b1a5f8b32152a158c7977fe",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/worlds/ghostblade/board-projects.png",
+      "bytes": 31203,
+      "sha256": "b33080399f63171f504583f80d6910611e97bdae976f1e747d61dbc40161a039",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/worlds/ghostblade/board-quotes.png",
+      "bytes": 28606,
+      "sha256": "8dab024f753f1e1e8390f0d40ecfad66697e50094270d3a9e044ca83228a1257",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/worlds/ghostblade/book-cover.png",
+      "bytes": 24917,
+      "sha256": "b9ad87a6d01788059bf0d1258423c92e8596fe622a46307cec75b28566882a08",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/worlds/ghostblade/city-study.png",
+      "bytes": 26120,
+      "sha256": "0259c8740b6cc5060829bce577d2da021091c461429b0d0a784d4ac19fb39cb5",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/worlds/ghostblade/daylight-screen.png",
+      "bytes": 29283,
+      "sha256": "cb4e949f312ab4cd56a64c43269e3db18a29ec68897eb93ea674fd0cfabbe01a",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/worlds/ghostblade/empty-desktop-slot.webp",
+      "bytes": 13660,
+      "sha256": "2074f950e336c7a276d545c532cbab6bb0ec73606a0af6ab32791b7ecad1c02c",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/worlds/ghostblade/mission-profile.png",
+      "bytes": 26253,
+      "sha256": "8f6ee03468707a41f8706d37bad60b86aaec9a81d3294001480e975e579fd67e",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    },
+    {
+      "path": "site/assets/worlds/ghostblade/room-environment.hdr",
+      "bytes": 8239,
+      "sha256": "30c378d13dc5ac116e20c8a25b89606e294ab99bf8aca3e33fa24a5d66633e99",
+      "license": "MIT",
+      "source": "ASSETS.md"
+    }
+  ]
+}

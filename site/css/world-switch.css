@@ -1,0 +1,18 @@
+/* Only the existing mask's world panel gains navigation. */
+.world-choices{display:grid;gap:10px;margin:24px 0 8px}
+.world-choice{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:12px;padding:16px 15px;color:var(--white);text-decoration:none;border:1px solid #eee4d65c;background:#101014;font-size:14px;transition:background 150ms,border-color 150ms}
+.world-choice strong{display:block;font-size:18px;line-height:1.5}
+.world-choice small{display:block;font-size:11px;line-height:1.7;color:#c6bfb9;margin-top:4px}
+.world-choice-number{font-size:11px;font-variant-numeric:tabular-nums;opacity:.65}
+.world-choice em{font-style:normal;font-size:12px;white-space:nowrap}
+a.world-choice:hover{background:#29272b;border-color:var(--white)}
+.world-choice[data-world-choice=persona]{border-left:4px solid #c91431}
+.world-choice[data-world-choice=ghostblade]{border-left:4px solid #8ca7b0}
+.world-choice.is-current{background:#262329}
+html[data-world=ghostblade] .world-choice{background:#273036;color:#e5e4dc;border-top-color:#6c787b;border-bottom-color:#6c787b;border-right-color:#6c787b}
+html[data-world=ghostblade] .world-choice small{color:#b9c2c2}
+html[data-world=ghostblade] .world-choice.is-current{background:#3c4b50}
+html[data-world=ghostblade] a.world-choice:hover{background:#44535a;border-color:#bfc7c4}
+html[data-world=ghostblade] .world-ticket{background:#34444b;border-color:#89999e}
+html[data-world=ghostblade] .world-ticket strong{text-shadow:none;font-size:clamp(30px,3.4vw,44px);white-space:nowrap}
+@media(max-width:700px){.world-choices{margin-top:18px}.world-choice{padding:14px 10px;gap:8px;grid-template-columns:24px 1fr auto}.world-choice strong{font-size:17px}}

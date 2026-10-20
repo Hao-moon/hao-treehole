@@ -1,0 +1,72 @@
+.panel[data-section=headphones]{width:min(1000px,calc(100vw - 90px));height:min(790px,calc(100dvh - 72px))}
+.soundscape{--sound-paper:#f3f0e5;--sound-ink:#141418;--sound-red:#e31336;color:var(--sound-ink);background:var(--sound-paper);padding:24px 28px 20px;border:3px solid var(--sound-ink);box-shadow:8px 8px 0 var(--sound-red);min-width:0}
+.soundscape-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+.soundscape-kicker{font-size:11px;letter-spacing:2px;color:#575550}.panel .soundscape-head h2{font-size:34px;letter-spacing:-1px;line-height:1.2;margin:7px 0 0;font-weight:950}
+.soundscape-medium{font-size:10px;line-height:1.8;text-align:right;border-left:3px solid var(--sound-red);padding-left:12px;color:#66635c}
+.soundscape-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px}
+.soundscape-listening{min-width:0;display:flex;flex-direction:column;align-items:center}
+.soundscape-presets{display:flex;align-self:stretch;gap:6px;position:relative;z-index:2}
+.soundscape-presets button{display:flex;gap:6px;justify-content:center;align-items:center;flex:1;padding:10px 7px;border:2px solid var(--sound-ink);background:var(--sound-paper);color:var(--sound-ink);transform:skew(-6deg);white-space:nowrap}
+.soundscape-presets strong{font-size:12px}.soundscape-presets button>span{font-size:9px;opacity:.65}
+.soundscape-presets button[aria-pressed=true]{background:var(--sound-red);color:white;box-shadow:3px 3px 0 var(--sound-ink);transform:skew(-6deg) translateY(-3px)}
+.soundscape-presets button:hover{box-shadow:3px 3px 0 var(--sound-ink)}
+.soundscape-cup{margin:26px 0 15px;width:min(220px,78%);aspect-ratio:.88;border:9px solid var(--sound-ink);border-radius:38% 38% 42% 42%;background:repeating-linear-gradient(55deg,#29292d 0 1px,#151518 1px 4px);position:relative;box-shadow:0 0 0 3px var(--sound-paper),0 0 0 5px var(--sound-ink),8px 10px 0 #14141825;display:grid;place-items:center;transform:rotate(-7deg)}
+.soundscape-cup::before{content:"";position:absolute;left:23%;right:23%;height:19px;border:5px solid var(--sound-ink);border-bottom:0;top:-29px;background:var(--sound-paper);clip-path:polygon(8% 0,92% 0,100% 100%,0 100%)}
+.soundscape-cup-label{position:absolute;top:21px;left:5px;right:5px;text-align:center;font-size:8px;letter-spacing:1.6px;color:var(--sound-paper);transform:rotate(7deg)}
+.soundscape-cup-sign{position:absolute;bottom:20px;color:#b5b0a3;font-size:7px;letter-spacing:1.3px;transform:rotate(7deg)}
+.soundscape-cup-rings{position:absolute;inset:25px 19px;border:5px solid var(--sound-paper);border-radius:38% 38% 42% 42%;opacity:.3}
+.soundscape-play{position:relative;transform:rotate(7deg);width:134px;height:134px;border:5px solid var(--sound-paper);border-radius:50%;background:var(--sound-red);color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;box-shadow:0 0 0 6px var(--sound-ink);z-index:1}
+.soundscape-play:hover{background:#ba0b29;transform:rotate(7deg) scale(1.03)}.soundscape-play:active{transform:rotate(7deg) scale(.97)}
+.soundscape-play>span{font-size:30px;line-height:1}.soundscape-play>strong{font-size:12px;font-weight:800;white-space:nowrap}
+.soundscape[data-playing=true] .soundscape-cup-rings{animation:sound-breathe 4s ease-in-out infinite}
+.panel .soundscape-description{font-size:12px;line-height:1.8;text-align:center;max-width:27em;margin:7px 0;color:#5e5a52}
+.panel .soundscape-status{font-size:11px;line-height:1.7;text-align:center;color:#8e1129;min-height:1.7em;margin:4px 0 12px;font-weight:700}
+.soundscape-desk{padding:3px 0 0;min-width:0}
+.soundscape-mix-heading{display:flex;align-items:baseline;justify-content:space-between;gap:10px;border-bottom:3px solid var(--sound-ink);padding-bottom:12px;margin-bottom:8px}
+.panel .soundscape-mix-heading h3{margin:0;font-size:17px}.soundscape-mix-heading>span{font-size:9px;color:#69655d}
+.soundscape-layer{display:grid;grid-template-columns:105px minmax(0,1fr);gap:9px;align-items:center;padding:11px 0;border-bottom:1px solid #14141820;min-height:65px}
+.soundscape-layer>button{display:grid;grid-template-columns:9px 1fr;gap:3px 7px;text-align:left;align-items:center;padding:3px 0;color:var(--sound-ink)}
+.soundscape-layer strong{font-size:12px}.soundscape-layer small{grid-column:2;font-size:9px;color:#6e685e}
+.soundscape-layer-indicator{width:7px;height:7px;background:var(--sound-red);border-radius:50%;outline:1px solid var(--sound-red);outline-offset:2px}
+.soundscape-layer button[aria-pressed=true] .soundscape-layer-indicator{background:transparent;outline-color:#827e75}
+.soundscape-layer button[aria-pressed=true] strong{color:#827e75}
+.soundscape-layer-slider{margin:0;display:grid;grid-template-columns:minmax(0,1fr) 21px;gap:10px;align-items:center}
+.soundscape-layer-slider output{font-size:11px;font-variant-numeric:tabular-nums;text-align:right;color:#615e55}
+.soundscape input[type=range]{appearance:none;height:22px;margin:0;background:transparent;cursor:pointer;accent-color:var(--sound-red)}
+.soundscape input[type=range]::-webkit-slider-runnable-track{height:4px;background:#aaa69b}
+.soundscape input[type=range]::-webkit-slider-thumb{appearance:none;width:11px;height:22px;background:var(--sound-ink);border:2px solid var(--sound-paper);border-radius:0;box-shadow:0 0 0 1px var(--sound-ink);margin-top:-9px}
+.soundscape input[type=range]::-moz-range-track{height:4px;background:#aaa69b}
+.soundscape input[type=range]::-moz-range-thumb{width:9px;height:20px;background:var(--sound-ink);border:2px solid var(--sound-paper);border-radius:0;box-shadow:0 0 0 1px var(--sound-ink)}
+.soundscape-master{margin-top:15px}.soundscape-master label{display:flex;justify-content:space-between;font-size:11px;font-weight:700;margin-bottom:4px}.soundscape-master output{font-variant-numeric:tabular-nums;font-weight:400}
+.soundscape-timer{margin-top:15px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:6px 10px}
+.soundscape-timer label{font-size:11px;margin:0}.soundscape-timer select{width:100%;background:var(--sound-paper);color:var(--sound-ink);border:1px solid #747168;padding:7px 6px;font-size:11px;color-scheme:light;min-height:34px}
+.soundscape-timer strong{font-size:13px;font-variant-numeric:tabular-nums;min-width:42px;text-align:right}
+.soundscape-timer small{grid-column:1/-1;color:#777167;font-size:9px;margin-top:3px}
+.soundscape-overlap{display:flex;align-items:center;gap:8px;font-size:10px;margin:16px 0 0;color:#645e55;cursor:pointer}
+.soundscape-overlap input{width:15px!important;height:15px;accent-color:var(--sound-red);margin:0;flex:0 0 15px}
+.soundscape-save{margin-top:21px;padding-top:17px;border-top:2px solid var(--sound-ink);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:end}
+.soundscape-save label{font-size:11px;margin:0 0 7px;font-weight:700}.soundscape-save form>div{display:flex;gap:7px}
+.soundscape-save input:not([type]){width:100%}.soundscape-save input[type=text]{min-width:0;background:#fffdf7;color:var(--sound-ink);border:1px solid #777268;padding:9px 10px;font-size:10px;height:36px}
+.soundscape-save input::placeholder{color:#767165}.soundscape-save button[type=submit]{font-size:11px;white-space:nowrap;padding:7px 12px;background:var(--sound-ink);color:var(--sound-paper);box-shadow:3px 3px 0 var(--sound-red)}
+.soundscape-favorites{display:flex;gap:6px;flex-wrap:wrap;align-items:center;min-height:36px}
+.soundscape-favorite{display:inline-flex;max-width:100%;border:1px solid #888276;transform:rotate(-1deg)}
+.soundscape-favorite button{padding:6px 8px;font-size:10px;color:var(--sound-ink);min-height:32px}.soundscape-favorite button:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:220px}.soundscape-favorite button:last-child{border-left:1px solid #888276;font-size:17px}.soundscape-favorite button:hover{background:var(--sound-red);color:white}
+.soundscape-no-favorites{font-size:10px;color:#777167}
+.panel .soundscape-footer{font-size:9px;color:#777167;line-height:1.6;margin:18px 0 0}.soundscape-footer span{margin-left:8px}
+.soundscape-sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.soundscape :focus-visible{outline:3px solid var(--sound-red);outline-offset:4px}.soundscape-play:focus-visible{outline-color:var(--sound-ink);outline-offset:10px}
+@keyframes sound-breathe{0%,100%{transform:scale(1);opacity:.25}50%{transform:scale(1.13);opacity:.8}}
+@media(max-width:760px){
+  .panel[data-section=headphones]{width:calc(100vw - 32px);height:calc(100dvh - 90px)}
+  .soundscape{padding:20px 17px 18px;box-shadow:5px 5px 0 var(--sound-red)}
+  .soundscape-body{grid-template-columns:1fr;gap:18px}.soundscape-head{margin-bottom:20px}.panel .soundscape-head h2{font-size:28px}
+  .soundscape-listening{display:grid;grid-template-columns:145px 1fr;gap:8px 20px;align-items:center}
+  .soundscape-presets{grid-column:1/-1;margin-bottom:10px}.soundscape-cup{width:140px;margin:20px 0 12px;grid-row:2/4;grid-column:1;border-width:6px}
+  .soundscape-cup::before{height:10px;top:-20px}.soundscape-play{width:87px;height:87px;border-width:3px;gap:5px}.soundscape-play>span{font-size:22px}.soundscape-play>strong{font-size:10px}
+  .soundscape-cup-label{font-size:5px;letter-spacing:.7px;top:10px}.soundscape-cup-sign{font-size:4px;letter-spacing:.5px;bottom:10px}.soundscape-cup-rings{inset:17px}
+  .panel .soundscape-description{text-align:left;font-size:12px;align-self:end;margin:5px 0}.panel .soundscape-status{text-align:left;font-size:10px;align-self:start;margin:0}
+  .soundscape-save{grid-template-columns:1fr;gap:16px}.soundscape-layer{grid-template-columns:115px minmax(0,1fr);min-height:65px}.soundscape-layer>button{min-height:44px}.soundscape-presets button{min-height:44px}
+  .soundscape-layer-slider{min-height:44px}.soundscape-favorite button{min-height:44px}.soundscape-save button[type=submit]{min-height:44px}.soundscape-save input[type=text]{height:44px}.soundscape-overlap{min-height:44px;margin-top:6px}.soundscape-timer select{min-height:44px}
+}
+@media(max-width:390px){.soundscape{padding:18px 12px}.soundscape-listening{grid-template-columns:125px 1fr;gap:8px 12px}.soundscape-cup{width:120px}.soundscape-cup-label,.soundscape-cup-sign{display:none}.soundscape-play{width:78px;height:78px}.soundscape-presets strong{font-size:11px}.soundscape-presets button>span{display:none}.soundscape-footer span{margin-left:0;display:block}}
+@media(prefers-reduced-motion:reduce){.soundscape *, .soundscape *::before, .soundscape *::after{animation:none!important;transition:none!important}}

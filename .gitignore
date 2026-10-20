@@ -1,0 +1,12 @@
+node_modules/
+.local/
+.env
+.env.*
+!.env.example
+*.blend
+*.blend1
+blender/textures/
+__pycache__/
+.DS_Store
+Thumbs.db
+*.log

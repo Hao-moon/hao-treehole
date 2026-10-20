@@ -1,0 +1,211 @@
+{
+  "revision": "20261019-interactive-wall-window-light",
+  "width": 7680,
+  "height": 4320,
+  "hots": {
+    "computer": {
+      "index": 1,
+      "bbox": [
+        2386,
+        1312,
+        4064,
+        2590
+      ],
+      "center": [
+        3072,
+        1988
+      ],
+      "pixels": 392317
+    },
+    "music": {
+      "index": 2,
+      "bbox": [
+        1298,
+        2568,
+        2412,
+        3182
+      ],
+      "center": [
+        1880,
+        2920
+      ],
+      "pixels": 119731
+    },
+    "books": {
+      "index": 3,
+      "bbox": [
+        5546,
+        3018,
+        6214,
+        3664
+      ],
+      "center": [
+        5866,
+        3334
+      ],
+      "pixels": 80086
+    },
+    "headphones": {
+      "index": 4,
+      "bbox": [
+        1518,
+        3242,
+        2530,
+        3752
+      ],
+      "center": [
+        2206,
+        3548
+      ],
+      "pixels": 58558
+    },
+    "mask": {
+      "index": 5,
+      "bbox": [
+        3886,
+        2642,
+        4194,
+        2904
+      ],
+      "center": [
+        4040,
+        2772
+      ],
+      "pixels": 15806
+    },
+    "board": {
+      "index": 6,
+      "bbox": [
+        1722,
+        674,
+        3104,
+        1386
+      ],
+      "center": [
+        2428,
+        1020
+      ],
+      "pixels": 207112
+    },
+    "asuka": {
+      "index": 7,
+      "bbox": [
+        4224,
+        1512,
+        4838,
+        2678
+      ],
+      "center": [
+        4531,
+        2116
+      ],
+      "pixels": 0,
+      "dynamic": true
+    },
+    "tower": {
+      "index": 8,
+      "bbox": [
+        4954,
+        1492,
+        5790,
+        2608
+      ],
+      "center": [
+        5364,
+        2042
+      ],
+      "pixels": 187053
+    },
+    "keyboard": {
+      "index": 9,
+      "bbox": [
+        2588,
+        2234,
+        4982,
+        3236
+      ],
+      "center": [
+        3338,
+        3036
+      ],
+      "pixels": 91921
+    },
+    "games": {
+      "index": 10,
+      "bbox": [
+        4270,
+        3390,
+        5220,
+        3810
+      ],
+      "center": [
+        4744,
+        3610
+      ],
+      "pixels": 73207
+    },
+    "board-gallery": {
+      "index": 12,
+      "bbox": [
+        816,
+        472,
+        1676,
+        1298
+      ],
+      "center": [
+        1256,
+        876
+      ],
+      "pixels": 134547
+    },
+    "board-projects": {
+      "index": 13,
+      "bbox": [
+        3292,
+        286,
+        4012,
+        1082
+      ],
+      "center": [
+        3646,
+        684
+      ],
+      "pixels": 129290
+    },
+    "board-links": {
+      "index": 14,
+      "bbox": [
+        1646,
+        288,
+        3052,
+        636
+      ],
+      "center": [
+        2352,
+        458
+      ],
+      "pixels": 100588
+    },
+    "board-quotes": {
+      "index": 15,
+      "bbox": [
+        1124,
+        1418,
+        2320,
+        1788
+      ],
+      "center": [
+        1726,
+        1600
+      ],
+      "pixels": 82008
+    }
+  },
+  "worlds": [
+    {
+      "id": "persona5",
+      "name": "绯红印记",
+      "image": "persona5.webp"
+    }
+  ]
+}

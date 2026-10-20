@@ -1,0 +1,8 @@
+.bgm-toggle{position:relative;min-width:148px;min-height:44px;padding:10px 16px;background:var(--white);color:var(--ink);border:2px solid var(--ink);box-shadow:4px 4px 0 var(--red);font-size:12px;font-weight:900;transform:rotate(-2deg)}
+.bgm-toggle[aria-pressed=true]{background:var(--ink);color:var(--white);border-color:var(--white)}
+.bgm-toggle:hover{background:var(--red);color:var(--white)}
+.bgm-setting{margin:18px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+.bgm-setting button{padding:8px 0;font-size:12px;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.bgm-setting p{font-size:11px;color:var(--muted);margin:4px 0 0}
+.track-badge{font-size:10px;color:var(--muted);padding:10px 4px;white-space:nowrap}
+@media(max-width:760px){.bgm-toggle{min-width:132px;padding:10px 12px}}

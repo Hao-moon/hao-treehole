@@ -1,0 +1,138 @@
+/* 浮在桌面上的独立物件卡片。场景纹理不参与界面换肤。 */
+.panel{inset:0;margin:auto;width:min(900px,calc(100vw - 116px));height:min(560px,calc(100dvh - 150px));max-width:none;max-height:none;border:0;padding:0;background:var(--ink);overflow:visible;isolation:isolate;box-shadow:20px 23px 0 #08080c55;transform-origin:50% 50%;--muted:#b9b5b3}
+.panel::before{position:absolute;inset:-7px;z-index:-1;border:5px solid var(--white);background:none!important;transform:rotate(1deg);pointer-events:none}
+.panel::after{content:"";position:absolute;inset:-15px -11px -12px -15px;border:9px solid var(--red);transform:rotate(-1.2deg);z-index:-2;pointer-events:none;clip-path:polygon(0 0,100% 2%,98% 100%,1% 98%)}
+.panel::backdrop{background:#07070966;backdrop-filter:none}
+.panel[open]{animation:none}
+.panel[data-phase=opening]::backdrop{animation:veil-in 300ms ease-out both}
+.panel[data-phase=closing]::backdrop{animation:veil-out 240ms ease-in both}
+.panel[data-phase=closing]{pointer-events:none}
+.object-page{max-width:none;margin:0;padding:24px 32px 25px;height:100%;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--red) var(--ink);background:linear-gradient(128deg,transparent 0 87%,#e326421c 87% 92%,transparent 92%),radial-gradient(#ffffff09 1px,transparent 1px),var(--ink);background-size:auto,6px 6px,auto}
+.object-heading{margin-bottom:18px;padding-right:110px}
+#panel-kicker{font-size:10px;letter-spacing:2px;margin:0 0 14px 2px;min-height:0;color:#c7c3bd}
+.panel h1{font-size:42px;line-height:1.15;gap:3px;padding-bottom:6px;letter-spacing:-1px;transform:rotate(-3deg)}
+.panel h1 span:nth-child(2n){text-shadow:3px 2px 0 var(--red),-1px -1px 0 var(--ink)}
+.panel h1 span:nth-child(3n+1){box-shadow:4px 4px 0 var(--red);text-shadow:none}
+.panel-close{position:absolute;top:18px;right:-12px;padding:10px 17px;min-height:42px;font-size:12px;transform:rotate(5deg);box-shadow:4px 4px 0 var(--red);border:3px solid var(--ink)}
+.panel-close::before{content:"";position:absolute;inset:-5px;border:1px solid var(--white);pointer-events:none}
+.panel-close:hover{transform:rotate(-3deg) translate(-3px,-2px);background:var(--red);color:white;box-shadow:5px 5px 0 var(--white)}
+.panel .panel-content{padding:0;min-width:0}
+.panel h2{font-size:23px}.panel h3{font-size:17px}.panel p{font-size:13px}.panel .paper-caption{margin-bottom:12px;font-size:10px;letter-spacing:1.5px}
+.panel :is(button,input,textarea,summary):focus-visible{outline:3px solid #eb3550;outline-offset:4px}
+.panel button:disabled{box-shadow:none;transform:none}
+.panel .primary,.panel .secondary{font-size:12px;padding:10px 17px;min-height:42px;position:relative;transition:transform 130ms,box-shadow 130ms,background 130ms}
+.panel .primary:hover,.panel .secondary:hover{transform:skew(-9deg) rotate(-2deg) translate(-3px,-2px);box-shadow:6px 5px 0 var(--ink)}
+.panel .primary:active,.panel .secondary:active{transform:skew(-9deg) translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.panel .saved-state{font-size:10px}.panel .save-row{margin-top:15px;gap:12px;flex-wrap:wrap}
+.panel textarea{resize:vertical;max-height:340px}.panel label{font-size:12px}
+.panel .small-copy{font-size:11px;line-height:1.8}
+.panel .toast{position:absolute;bottom:16px;font-size:12px;box-shadow:5px 5px 0 var(--red);max-width:85%;width:max-content}
+.card-fx{position:absolute;inset:0;overflow:hidden;z-index:9;pointer-events:none}
+.page-slash{position:absolute;inset:-5% -10%;width:120%;background:var(--red);border-right:36px solid var(--white);border-left:22px solid #09090d;transform:translateX(-130%) skewX(-20deg)}
+.panel[open] .page-slash{animation:none}
+.card-open :is(.room-footer,.view-tools,.world-button){opacity:.3;transition:opacity 220ms}
+/* 选中项：红色剪纸、错位白边、方向尖角。静止后不持续晃动。 */
+.panel .collection-list{gap:11px;margin:12px 0;padding:3px 7px 3px 4px}
+.panel .collection-item{isolation:isolate;min-height:47px;padding:11px 23px 11px 13px;border:0;box-shadow:none;transform:rotate(-1.5deg);background:#ffffff10;line-height:1.6;transition:transform 150ms,background 150ms;overflow:visible}
+.collection-item>span{overflow-wrap:anywhere}.panel .collection-item>small{align-self:center;opacity:.8;font-size:9px}
+.collection-item::before{content:"";position:absolute;inset:-3px -4px;z-index:-1;background:var(--white);clip-path:polygon(1% 13%,96% 0,100% 81%,0 100%);opacity:0}
+.collection-item::after{content:"";position:absolute;inset:0;z-index:-1;background:var(--red);clip-path:polygon(0 10%,100% 0,97% 90%,2% 100%);opacity:0}
+.panel .collection-item.active{color:white;background:transparent;box-shadow:none;transform:rotate(-2.5deg) translateX(3px)}
+.collection-item.active::before,.collection-item.active::after{opacity:1}
+.collection-item.active>span::after{content:"◀";position:absolute;right:5px;top:calc(50% - 10px);font-size:12px;color:var(--white)}
+.panel .collection-item:hover,.panel .collection-item:focus-visible{transform:rotate(-3.5deg) translateX(6px);background:var(--red);color:white}
+.panel .collection-item:focus-visible{outline-color:white}
+.panel .collection-item span small{font-weight:500;opacity:.65}
+.panel details{margin-top:13px}.panel summary{font-size:12px;padding:12px 0;min-height:42px}.panel details input{padding:9px 0}
+/* 阅读：藏书与可书写纸页，状态本身是一组可用键盘选择的菜单。 */
+.reading-layout{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:36px}
+.book-shelf{padding:0 0 8px}.shelf-caption{font-size:10px;padding-bottom:9px}
+.featured-book{padding:15px 10px 17px}
+.book-jacket{width:139px;min-height:183px;padding:17px 13px;border-left-width:9px;box-shadow:4px 3px 0 #bdb6aa,7px 5px 0 var(--white),11px 7px 0 #0009}
+.jacket-tag{font-size:8px;letter-spacing:2px;margin-bottom:24px}.book-jacket strong{font-size:23px;line-height:1.3}.book-jacket small{font-size:8px;margin-top:39px}.jacket-city{bottom:36px;left:13px;height:22px}
+.reading-paper{min-height:0;padding:21px 24px;box-shadow:7px 7px 0 var(--red)}
+.reading-paper::before{width:60px;left:32px;height:18px}
+.reading-paper h2{font-size:25px;line-height:1.4;margin-bottom:14px;overflow-wrap:anywhere}
+.panel .reading-status{display:block;border:0;border-bottom:2px solid var(--ink);padding:0 0 12px;margin:0 0 13px;min-width:0}
+.reading-status legend{font-size:10px;color:#706964;margin-bottom:5px}
+.status-options{display:flex;gap:8px;padding:3px 2px}
+.panel .status-option{position:relative;flex:1;margin:0;cursor:pointer}
+.panel .status-option input{position:absolute;width:1px;height:1px;opacity:0;padding:0;border:0}
+.status-option span{position:relative;display:flex;gap:8px;align-items:center;justify-content:center;min-height:37px;background:#dcd7cc;color:var(--ink);font-size:12px;font-weight:900;transform:skew(-7deg);border:2px solid transparent;transition:transform 130ms}
+.status-option small{font-size:8px;opacity:.65;font-weight:400}
+.status-option input:checked+span{background:var(--red);color:white;border-color:var(--ink);box-shadow:3px 3px 0 var(--ink);transform:skew(-7deg) rotate(-3deg)}
+.status-option input:checked+span::after{content:"";position:absolute;right:-6px;top:7px;width:9px;height:14px;background:var(--white);clip-path:polygon(100% 0,100% 100%,0 50%);filter:drop-shadow(1px 1px black)}
+.status-option input:focus-visible+span{outline:2px solid var(--ink);outline-offset:4px}.status-option:hover span{transform:skew(-7deg) translateY(-2px)}
+.panel #book-note{min-height:114px;max-height:300px;font-size:13px;line-height:27px;background:repeating-linear-gradient(transparent 0 26px,#13131920 26px 27px)}
+/* 光盘：银色光盘与红黑歌单。选歌只更新选中态，不销毁按钮或焦点。 */
+.player-layout{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:36px}
+.disc-stage{height:173px;margin:0 0 12px}.disc-caption{font-size:9px;top:18px;left:15px}.disc-corner{font-size:35px;bottom:15px;right:17px}
+.panel .music-disc{width:161px;height:161px;border-width:2px}.panel .music-disc::before{inset:49px}.music-disc span{font-size:12px}
+.panel .track-title{font-size:21px!important;line-height:1.4;margin-bottom:6px!important}.panel .track-sub{font-size:10px!important}.eyebrow{font-size:9px;margin-bottom:6px}
+.panel .transport{margin:12px 0 10px;gap:8px}.panel .transport button{font-size:11px;padding:7px 11px}.panel .transport #play-toggle{min-width:95px}.panel .time-row{font-size:10px;margin-top:3px}.panel .volume-row{margin:10px 0;font-size:10px}
+.playlist-sheet{padding:22px;min-height:375px;box-shadow:7px 7px 0 var(--red)}
+.playlist-heading{margin-bottom:15px}.playlist-heading h2{font-size:23px;margin-bottom:13px}.playlist-heading>span{font-size:11px}
+.playlist{max-height:220px;margin:14px -5px 11px;padding:4px 5px;overflow:auto}.panel .track-row{gap:7px;padding:5px 0}
+.panel .track-row>button:first-child{display:flex;gap:11px;align-items:center;position:relative;min-height:46px;padding:11px 12px;transform:skew(-3deg);overflow:visible;border:2px solid transparent;transition:transform 140ms,background 140ms}
+.track-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.track-number{font-size:9px;opacity:.7;flex-shrink:0}.track-indicator{display:none;font-size:12px;margin-left:auto}
+.panel .track-row.active>button:first-child{background:var(--red);color:white;border:2px solid var(--ink);box-shadow:-3px 3px 0 var(--ink),2px -2px 0 var(--white);transform:skew(-3deg) rotate(-2deg)}
+.track-row.active .track-indicator{display:block}.panel .track-row>button:first-child:hover{transform:skew(-3deg) rotate(-3deg) translateX(2px);background:var(--ink);color:white}.panel .track-remove{min-height:44px}
+.playlist-empty{padding:8px 0 10px}.playlist-empty>span{font-size:40px;margin-bottom:8px}.playlist-empty h3{font-size:17px;margin-bottom:6px}.playlist-empty p{font-size:11px;line-height:1.7}.panel .storage-note{padding-top:9px;font-size:10px;line-height:1.7}.panel .track-row>button:first-child:focus-visible{outline-color:var(--ink);outline-offset:2px}
+/* 记录：小型写作卡与时间流。 */
+.journal-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px}
+.journal-compose{padding:22px 25px 24px;box-shadow:7px 7px 0 var(--red)}.journal-date{padding-bottom:13px;margin-bottom:16px;gap:15px}.journal-date strong{font-size:52px}.journal-date span{font-size:11px}
+.panel .note-text{min-height:170px;font-size:13px;line-height:27px;padding-top:5px;background:repeating-linear-gradient(transparent 0 26px,#13131920 26px 27px)}
+.timeline-heading{padding:8px 0 13px}.timeline-heading h2{font-size:17px}.journal-empty{padding:20px 10px}.journal-empty>span{font-size:49px;width:87px;margin-bottom:28px}.journal-empty h3{font-size:23px}.journal-empty p{font-size:12px}
+.panel .record{padding:20px 0 0 3px}.record-meta{font-size:9px}.panel .record p{padding:18px;font-size:12px}.record-meta button{min-height:30px}.journal-timeline{max-height:365px;overflow:auto;padding:0 7px 10px 0;scrollbar-width:thin}
+/* 耳机 / 面具 / 墙板继续使用各自构图，没有汇总菜单。 */
+.panel[data-section=headphones] .object-page{background:linear-gradient(120deg,#ce1b38 0 41%,#131319 41% 100%)}
+.listening-layout{grid-template-columns:1fr 1fr;gap:45px;min-height:335px}.headphone-art svg{max-width:270px}.headphone-art>span{font-size:13px;padding:7px 11px}.listening-controls{padding:12px 5px 12px 0}.listening-controls .track-title{font-size:26px!important}.listening-controls .transport{margin-top:24px}.listening-controls .volume-row{margin-bottom:22px}.listening-controls>.small-copy{margin-top:20px}
+.world-layout{grid-template-columns:.9fr 1.1fr;gap:50px;padding:15px 15px 20px}.world-ticket{padding:26px;border-width:4px;box-shadow:8px 8px 0 #000}.world-ticket strong{font-size:65px}.world-ticket>span{font-size:10px;margin-bottom:25px}.world-ticket small{font-size:11px;margin-top:25px}.world-copy h2{font-size:24px}.world-copy button{margin-top:14px}
+.about-layout{grid-template-columns:1.15fr .85fr;gap:36px}.about-letter{padding:25px;box-shadow:7px 7px 0 var(--red)}.about-letter h2{font-size:26px}.about-letter p{font-size:12px}.panel .about-links{padding-top:18px;margin-top:10px}.about-links h3{font-size:24px}.about-links .button-row{margin:18px 0}.about-links .text-button{font-size:11px;min-height:42px}
+@keyframes veil-in{from{background:#07070900}to{background:#07070966}}@keyframes veil-out{from{background:#07070966}to{background:#07070900}}
+@media(max-width:800px){.panel{width:calc(100vw - 76px)}.object-page{padding:25px 25px 28px}.reading-layout,.player-layout,.journal-layout,.about-layout{gap:25px}.panel h1{font-size:37px}.reading-paper,.playlist-sheet,.journal-compose{padding:21px}.status-options{gap:5px}.status-option span{gap:5px}.status-option small{display:none}.world-layout{gap:30px;padding:10px}.world-ticket{padding:23px}.world-ticket strong{font-size:54px}.world-copy h2{font-size:21px}.about-letter{padding:23px}.about-links h3{font-size:21px}}
+@media(max-width:620px){
+  .panel{width:calc(100vw - 44px);height:calc(100dvh - 138px);box-shadow:12px 15px 0 #08080c55}
+  .panel::before{inset:-5px;border-width:3px;transform:rotate(.7deg)}.panel::after{inset:-9px;border-width:6px;transform:rotate(-.9deg)}
+  .object-page{padding:24px 20px 30px}.object-heading{padding-right:0;margin-bottom:24px}#panel-kicker{font-size:8px;letter-spacing:1px;margin-bottom:20px;max-width:calc(100% - 72px)}.panel h1{font-size:32px;gap:2px}
+  .panel-close{top:13px;right:-7px;padding:7px 10px;font-size:10px;min-height:35px;border-width:2px}
+  .reading-layout,.player-layout,.journal-layout,.listening-layout,.world-layout,.about-layout{display:block}
+  .book-shelf{margin-bottom:22px}.featured-book{padding:20px 8px 22px}.book-jacket{width:128px;min-height:176px}.reading-paper{padding:24px 20px}.reading-paper h2{font-size:23px}.panel #book-note{min-height:162px}.status-option small{display:inline}.panel .save-row{gap:13px}
+  .turntable{margin-bottom:28px}.disc-stage{height:182px}.panel .track-title{font-size:21px!important}.playlist-sheet{min-height:0;padding:23px 20px}.playlist-heading h2{font-size:20px}.playlist-empty>span{font-size:43px}.playlist{max-height:240px}
+  .journal-compose{padding:22px 20px}.journal-timeline{margin-top:32px;max-height:none;overflow:visible}.timeline-heading{gap:9px}.timeline-heading h2{font-size:16px}.panel .note-text{min-height:182px}.journal-empty{padding:18px 7px}
+  .panel[data-section=headphones] .object-page{background:linear-gradient(157deg,#ce1b38 0 39%,#131319 39% 100%)}.listening-layout{min-height:0}.headphone-art{padding:0;margin:0 0 25px}.headphone-art svg{max-width:197px}.headphone-art>span{font-size:11px}.listening-controls{padding:15px 0}.listening-controls .track-title{font-size:24px!important}
+  .world-layout{padding:8px 6px 0}.world-ticket{padding:26px;margin:0 5px 39px}.world-ticket strong{font-size:60px}.world-copy h2{font-size:22px}.world-copy p{font-size:12px}
+  .about-letter{padding:23px 20px}.about-letter h2{font-size:24px}.panel .about-links{margin-top:35px}.panel .toast{font-size:11px;bottom:13px}
+}
+@media(prefers-reduced-motion:reduce){.panel::backdrop{animation:none!important}.card-fx{display:none}.panel,.panel *{scroll-behavior:auto!important;transition:none!important}}
+
+/* 新加入的手办保留自己的收藏卡，与阅读、音乐各自独立。 */
+.collectible-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr);gap:34px;align-items:center}
+.figure-viewer{min-width:0}
+.figure-tabs{display:flex;gap:12px;position:relative;z-index:2;margin:0 8px 12px}
+.panel .figure-tabs button{flex:1;min-height:36px;padding:7px 10px;border:2px solid var(--white);background:var(--ink);color:var(--white);font-size:12px;font-weight:800;transform:skew(-9deg);position:relative}
+.panel .figure-tabs button[aria-pressed=true]{background:var(--white);color:var(--ink);box-shadow:4px 4px 0 var(--red);transform:skew(-9deg) rotate(-2deg)}
+.panel .figure-tabs button[aria-pressed=true]::after{content:"";position:absolute;bottom:-8px;left:17px;border:5px solid transparent;border-top-color:var(--white)}
+.panel .figure-tabs button:hover{background:var(--red);color:white;transform:skew(-9deg) rotate(-3deg)}
+.figure-viewport{position:relative;height:292px;isolation:isolate;overflow:hidden;border:1px solid #fff5;touch-action:none;user-select:none;outline-offset:3px;background:linear-gradient(114deg,transparent 0 22%,#d51637 22% 78%,transparent 78%),radial-gradient(#ffffff23 .7px,transparent .8px),#1b1b22;background-size:auto,5px 5px,auto;cursor:zoom-in}
+.figure-viewport:focus-visible{outline:2px solid var(--white)}
+.figure-viewport.can-pan{cursor:grab}.figure-viewport.is-dragging{cursor:grabbing}
+.figure-number{position:absolute;right:14px;top:0;font:900 215px/1 system-ui,sans-serif;letter-spacing:-20px;color:var(--white);opacity:.13;transform:rotate(-12deg);pointer-events:none}
+.figure-caption{position:absolute;z-index:2;left:12px;top:12px;background:var(--ink);color:var(--white);padding:5px 9px;font-size:9px;letter-spacing:2px;border-left:3px solid var(--white);pointer-events:none}
+.figure-mover{position:absolute;left:50%;top:50%;transform-origin:center;will-change:transform;pointer-events:none}
+.figure-mover img{display:block;width:100%;height:100%;max-width:none;object-fit:contain;user-select:none;filter:drop-shadow(4px 6px 0 #08080a4d)}
+.figure-flash{position:absolute;z-index:3;inset:0;background:var(--white);pointer-events:none;transform:translateX(-150%) skewX(-18deg)}
+.panel .figure-status{position:absolute;z-index:4;inset:42% 15px auto;margin:0;padding:12px;text-align:center;background:var(--ink);font-size:12px}
+.figure-viewport[aria-busy=true] .figure-mover{opacity:.25}
+.figure-viewport [data-retry]{position:absolute;z-index:5;top:63%;left:50%;transform:translateX(-50%);background:var(--white);color:var(--ink);padding:8px 15px;font-size:12px}
+.figure-toolbar{display:flex;align-items:center;gap:4px;background:var(--white);color:var(--ink);padding:3px 8px;border-bottom:4px solid var(--red)}
+.figure-tool-label{margin-right:auto;font-weight:800;font-size:10px;letter-spacing:1px}
+.panel .figure-toolbar button{min-width:34px;min-height:34px;padding:5px;font-size:15px;font-weight:800}
+.panel .figure-toolbar button:last-child{font-size:11px;border-left:1px solid #12121640;margin-left:5px;padding-left:11px}
+.panel .figure-toolbar button:hover:not(:disabled){background:var(--red);color:white}.panel .figure-toolbar button:disabled{opacity:.3}
+.figure-scale{min-width:42px;font-size:10px;text-align:center;font-variant-numeric:tabular-nums}
+.panel .figure-help{font-size:10px;color:#b4aea7;line-height:1.6;margin:8px 0 0;text-align:center}
+.collectible-story{padding:0;min-width:0}.collectible-story h2{font-size:25px;line-height:1.4;margin:0 0 16px}.panel .collectible-quote{font-size:21px;font-weight:800;line-height:1.65;border-left:4px solid var(--red);padding-left:14px;margin-bottom:18px}
+.collectible-story dl{margin:0 0 16px;font-size:12px}.collectible-story dl>div{display:flex;gap:20px;padding:10px 0;border-bottom:1px solid #ffffff24}.collectible-story dt{font-size:10px;color:#b4aea7;flex-shrink:0}.collectible-story dd{margin:0;line-height:1.5}.panel .collectible-invite{font-size:13px;line-height:1.65;color:#eee9e2;font-weight:600;margin:0 0 14px}.panel .collectible-credit{font-size:10px;line-height:1.8;color:#b4aea7;margin:0}.collectible-credit a{text-decoration-thickness:1px;text-underline-offset:3px}.collectible-credit a:hover{color:var(--white)}
+@media(max-width:800px){.collectible-layout{gap:25px}.collectible-story h2{font-size:21px}.panel .collectible-quote{font-size:17px}.figure-tabs{gap:8px;margin-left:3px;margin-right:3px}.panel .figure-tabs button{font-size:11px;padding:7px 5px}.figure-tool-label{display:none}.figure-toolbar{justify-content:center}}
+@media(max-width:620px){.collectible-layout{display:block}.figure-viewer{margin-bottom:26px}.figure-viewport{height:320px}.panel .figure-tabs button{min-height:42px;font-size:12px}.panel .figure-toolbar button{min-width:40px;min-height:42px}.figure-toolbar{gap:5px}.figure-tool-label{display:inline;font-size:9px;letter-spacing:0}.figure-number{font-size:195px}.collectible-story{padding:0 3px}.collectible-story h2{font-size:24px}.collectible-story dl>div{gap:17px}.object-nav button{padding-left:6px;padding-right:6px;font-size:11px}}

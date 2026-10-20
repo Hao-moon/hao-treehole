@@ -1,0 +1,120 @@
+/* World 02 — original daylight studio. Presentation only, scoped to the preview.
+   Layout dimensions, motion timing, hit areas and content remain shared.
+   Cool detailed shadows / warm paper / neutral metal. No screen-wide filter. */
+html[data-world=ghostblade]{--ink:#162523;--white:#e8e9df;--red:#a9b8a8;--muted:#bbc4b9;--line:#687b72;--urban-paper:#e8e3d6;--urban-text:#253630;--urban-steel:#bbc5bd;--urban-accent:#506e60;color-scheme:dark}
+html[data-world=ghostblade] body{background:#142421}
+html[data-world=ghostblade] ::selection{background:#b2c2a8;color:#182b25}
+html[data-world=ghostblade] :focus-visible{outline-color:#c2cfb5!important}
+html[data-world=ghostblade] .scene-shade{background:none;border-color:#465159;box-shadow:none}
+html[data-world=ghostblade] .scene-shade::before,
+html[data-world=ghostblade] .scene-shade::after{display:none}
+html[data-world=ghostblade] :is(.loading,.loading-mark){background:#1b2f2b;color:#e8e3d6;box-shadow:none;transform:none}
+html[data-world=ghostblade] :is(#bgm-toggle,#explore-toggle,.hot-label,.mini-player,#explore-drawer,.view-tools button,.toast){background:#20322eee;border:1px solid #8a9c8c;color:#e8e9df;box-shadow:0 5px 18px #06130e50;transform:none;border-radius:2px;font-weight:500}
+html[data-world=ghostblade] :is(#bgm-toggle,#explore-toggle):hover{background:#314a3e;color:#fff}
+html[data-world=ghostblade] #bgm-toggle::before,
+html[data-world=ghostblade] #bgm-toggle::after{display:none}
+html[data-world=ghostblade] .toast{transform:translateX(-50%)}
+html[data-world=ghostblade] .marker{transform:translate(-50%,-50%);background:#23352e;color:#e8e9df;border:1px solid #b4c0ae;box-shadow:0 4px 12px #0003;font-weight:500}
+html[data-world=ghostblade] #explore-drawer :is(.explore-action,.explore-links button):hover{color:#d5d9b8}
+html[data-world=ghostblade] .room-power-led{background:#c6d9bb;box-shadow:0 0 4px #c6d9bb40}
+html[data-world=ghostblade] .room-sound-led{background:#e4dec6;box-shadow:0 0 0 1px #788e7c}
+html[data-world=ghostblade] .room-wall-lift{box-shadow:0 8px 18px #0005}
+html[data-world=ghostblade] .room-wall-paper{position:absolute;inset:0;width:100%;height:100%}
+html[data-world=ghostblade] .room-wall-photo{position:absolute;left:6.6%;top:5%;width:86.8%;height:76%;object-fit:cover}
+html[data-world=ghostblade] .room-city-pulse{filter:none}
+html[data-world=ghostblade] .panel{color:#e8e9df;--muted:#bbc4b9;box-shadow:0 24px 80px #07151080;border-radius:3px}
+html[data-world=ghostblade] .panel::before{border:1px solid #9aaa96;inset:-4px;transform:none;background:none!important;clip-path:none}
+html[data-world=ghostblade] .panel::after{display:none}
+html[data-world=ghostblade] .panel::backdrop{background:#07181180}
+html[data-world=ghostblade] .object-page{background:#1d302a;scrollbar-color:#7d9180 #21372f}
+html[data-world=ghostblade] .card-fx{display:none}
+html[data-world=ghostblade] :is(.panel h1,.panel h2,.panel h3){font-family:'Songti SC',SimSun,serif;letter-spacing:.02em;text-shadow:none}
+html[data-world=ghostblade] .panel h1{transform:none}
+html[data-world=ghostblade] .panel h1 span,
+html[data-world=ghostblade] .panel h1 span:nth-child(n){transform:none;box-shadow:none;text-shadow:none;color:#e8e9df;background:none;padding-left:0;padding-right:0}
+html[data-world=ghostblade] .panel-close{background:#e8e3d6;color:#253630;border:1px solid #8e9e89;box-shadow:0 3px 12px #0004;transform:none;border-radius:2px;font-weight:500}
+html[data-world=ghostblade] .panel-close::before{display:none}
+html[data-world=ghostblade] .panel-close:hover{background:#d8dece;color:#1c3128;box-shadow:0 4px 14px #0004;transform:none}
+html[data-world=ghostblade] .panel :is(.primary,.secondary){transform:none;clip-path:none;border:1px solid #8c9c88;box-shadow:inset 0 1px 0 #ffffff12;border-radius:2px;font-weight:500}
+html[data-world=ghostblade] .panel .primary{background:#456353;color:#f1f0e4}
+html[data-world=ghostblade] .panel .secondary{background:#e0e1d4;color:#253630}
+html[data-world=ghostblade] .panel :is(.primary,.secondary):hover{transform:none;box-shadow:inset 0 0 0 1px #b7c6ae;background:#5d7967;color:#fff}
+html[data-world=ghostblade] .panel input::placeholder,
+html[data-world=ghostblade] .panel textarea::placeholder{color:#77867a}
+html[data-world=ghostblade] .panel .eyebrow{color:#bdc9b2}
+html[data-world=ghostblade] .panel .collection-item{transform:none!important;clip-path:none;background:#293f35;color:#e4e8dc;border-color:#6b8070;box-shadow:none}
+html[data-world=ghostblade] .panel .collection-item.active{background:#d9dfcd;color:#253630;border-color:#a8baa0}
+html[data-world=ghostblade] .collection-item::before,
+html[data-world=ghostblade] .collection-item::after,
+html[data-world=ghostblade] .collection-item.active>span::after{display:none}
+html[data-world=ghostblade] .panel :is(.reading-paper,.playlist-sheet,.about-letter){background:#e8e3d6;color:#253630;box-shadow:0 7px 22px #0004}
+html[data-world=ghostblade] .world-ticket{background:#31483d;color:#e8e3d6;clip-path:none;transform:none;border:1px solid #8c9e88;box-shadow:0 12px 26px #0004}
+html[data-world=ghostblade] .world-ticket::before,
+html[data-world=ghostblade] .world-ticket::after{display:none}
+html[data-world=ghostblade] .world-ticket strong{font-family:SimSun,serif;font-weight:500}
+/* Paper stays warm, quiet and fully readable, including the turning sheets. */
+html[data-world=ghostblade] .panel[data-section=books]{background:transparent;box-shadow:none}
+html[data-world=ghostblade] .panel[data-section=books] .object-page{background:transparent;box-shadow:none}
+html[data-world=ghostblade] .hideout-reader{--reader-paper:#e8e3d6;--reader-ink:#253630;--reader-red:#506e60}
+html[data-world=ghostblade] .hideout-reader .reader-primary{background:#425f50;color:#f4f0e3;border:1px solid #304b3b;box-shadow:0 2px 6px #0002;font-weight:500}
+html[data-world=ghostblade] .hideout-reader .reader-primary:hover{background:#315443}
+html[data-world=ghostblade] .reader-cover{border-left-color:#8e9d83!important;box-shadow:4px 5px 8px #0002!important}
+html[data-world=ghostblade] .hideout-reader .reader-cover::after{height:1px;background:#97aa8d;transform:none;left:13px;width:110px;bottom:40px}
+html[data-world=ghostblade] .hideout-reader :is(.reader-book-list,.reader-toolbar,.reader-pagination){border-color:#8c9a8555}
+html[data-world=ghostblade] .hideout-reader .reader-shelf-list h2{font-weight:500}
+/* A monitor is still a monitor. Image pixels keep their original colors. */
+html[data-world=ghostblade] :is(.panel[data-section=computer],.panel[data-section=tower]){box-shadow:none}
+html[data-world=ghostblade] .computer-mount{--pc-paper:#e5e2d8;--pc-ink:#202a31;--pc-red:#718996}
+html[data-world=ghostblade] .computer-shell{border-color:#75838c;box-shadow:0 20px 55px #0006;border-radius:3px}
+html[data-world=ghostblade] .computer-topbar{background:#273139;color:#e8e9df;border-bottom:1px solid #819098}
+html[data-world=ghostblade] .computer-brand b{transform:none;background:#8a9ca7;color:#1b282f}
+html[data-world=ghostblade] .computer-section-label{color:#d2dce0;border-bottom-color:#a0b3bc}
+html[data-world=ghostblade] .computer-power{border-color:#92a3ab;color:#e8e9df}
+html[data-world=ghostblade] .computer-tools{background:#e5e2d8;color:#29363d}
+html[data-world=ghostblade] .computer-theme-list button{transform:none;clip-path:none;border-color:#8b979d70;box-shadow:none}
+html[data-world=ghostblade] .computer-theme-list button[aria-pressed=true]{background:#344851;color:#ecede1;box-shadow:inset 3px 0 #a6b8c0;transform:none}
+html[data-world=ghostblade] .computer-screen-label{background:#202e36e8;border-left:2px solid #b8c6cb;transform:none;box-shadow:none}
+html[data-world=ghostblade] .computer-screen-label strong{font-family:SimSun,serif;font-weight:500}
+html[data-world=ghostblade] .computer-import{border-color:#7b8b93;color:#29363d}
+html[data-world=ghostblade] .computer-bottom{background:#273139;color:#c5d0d5;border-color:#75848d}
+/* Soundscape keeps the same headphone controls and mixer. */
+html[data-world=ghostblade] .panel[data-section=headphones]{box-shadow:none}
+html[data-world=ghostblade] .panel[data-section=headphones] .object-page{background:#e8e3d6}
+html[data-world=ghostblade] .soundscape{--sound-paper:#e8e3d6;--sound-ink:#253630;--sound-red:#5f7a63;border:1px solid #8f9f88;box-shadow:0 15px 45px #0005}
+html[data-world=ghostblade] .soundscape-head h2{font-weight:500}
+html[data-world=ghostblade] .soundscape-presets button{transform:none;box-shadow:none;border:1px solid #80947a}
+html[data-world=ghostblade] .soundscape-presets button[aria-pressed=true]{background:#344f3e;color:#eff0e4;transform:none;box-shadow:inset 0 -2px #aaba9b}
+html[data-world=ghostblade] .soundscape-cup{background:radial-gradient(ellipse at 32% 16%,#576a5c,#1b3028 65%);box-shadow:0 0 0 2px #abb6a0,0 12px 22px #17271950;border-color:#263c31}
+html[data-world=ghostblade] .soundscape-play{background:#627c64;box-shadow:0 0 0 3px #253630;color:#f2f0df}
+html[data-world=ghostblade] .soundscape-play:hover{background:#4e7054}
+html[data-world=ghostblade] .panel .soundscape-status{color:#436248}
+/* Collection sheets preserve all editing and import controls. */
+html[data-world=ghostblade] .panel[data-section^=board-]{box-shadow:none}
+html[data-world=ghostblade] .panel[data-section^=board-] .object-page{background:transparent}
+html[data-world=ghostblade] .wall-collection{--wall-paper:#e5dfd2;--wall-ink:#303b40;--wall-red:#556b75;border:1px solid #a2aaa8;box-shadow:0 20px 55px #0006}
+html[data-world=ghostblade] .wall-photos{--wall-paper:#e5e2d8;--wall-ink:#30383b;--wall-red:#64797d}
+html[data-world=ghostblade] .wall-projects{--wall-paper:#d9ddda;--wall-red:#455259}
+html[data-world=ghostblade] .wall-links{--wall-paper:#d9dfde;--wall-red:#4e646e}
+html[data-world=ghostblade] .wall-quotes{--wall-paper:#e7ddca;--wall-ink:#3d3931;--wall-red:#81725d}
+html[data-world=ghostblade] .wall-index [aria-pressed=true]{transform:none;background:#455b65}
+html[data-world=ghostblade] .wall-file-paper{border-top-color:#9ca8ab;box-shadow:0 5px 15px #0003}
+html[data-world=ghostblade] .wall-polaroid{transform:none;box-shadow:0 6px 16px #0004}
+html[data-world=ghostblade] .wall-title h2{font-weight:500}
+/* Botanical colors remain; steel pots and display surfaces change finish. */
+html[data-world=ghostblade] .panel[data-section=plant] .object-page{background:#20362b}
+html[data-world=ghostblade] .plant-portrait{background:#c7cdbc;border-color:#879b81;box-shadow:0 8px 20px #0004;clip-path:none}
+html[data-world=ghostblade] .plant-selector button{background:#2c4334;transform:none;color:#e3e8d9;border-color:#7d9274}
+html[data-world=ghostblade] .plant-selector button[aria-pressed=true]{background:#c2ceaf;color:#253630;transform:none;box-shadow:none}
+/* Collected characters remain in their own colors and original silhouettes. */
+html[data-world=ghostblade] .panel[data-section=asuka] .object-page{background:#20362b}
+html[data-world=ghostblade] .character-view{background:radial-gradient(ellipse at 65% 15%,#607760,#243c30 80%);border-color:#879c7b}
+html[data-world=ghostblade] .character-view::before{clip-path:none;border:1px solid #c0cfaf40}
+html[data-world=ghostblade] :is(.character-stamp,.figure-selector-toggle span){background:#d9ddc9;color:#253630;transform:none;box-shadow:0 2px 7px #0003}
+html[data-world=ghostblade] .sw-console{--sw-paper:#dce0cc;--sw-red:#91a68c;border-color:#263b31;background:#263b31}
+html[data-world=ghostblade] .sw-joy{background:linear-gradient(90deg,#8b9e86,#b1bca4);color:#253630}
+html[data-world=ghostblade] .sw-joy-right{background:linear-gradient(90deg,#b4bba5,#d2d3bd)}
+html[data-world=ghostblade] .panel[data-section=music]{background:transparent;box-shadow:none}
+html[data-world=ghostblade] .panel[data-section=music] .object-page{background:none}
+html[data-world=ghostblade] .panel .deck-hit:hover{background:#9caf8415;box-shadow:0 0 0 1px #b7c5a377}
+html[data-world=ghostblade] .panel .deck-hit:active{background:#9caf8440}
+@media(max-width:700px){html[data-world=ghostblade] .panel[data-section=books][data-phase=open] .object-page{background:#e8e3d6;border:0;box-shadow:none}}

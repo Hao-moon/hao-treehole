@@ -1,0 +1,104 @@
+/* A quiet reading surface inside the room's physical, red-spined book. */
+.hideout-reader{--reader-paper:#f6f2e8;--reader-ink:#17171b;--reader-red:#e90035;--reader-font-size:19px;--reader-line-height:1.9;--reader-column-gap:40px;width:100%;height:100%;min-height:0;color:var(--reader-ink);background:var(--reader-paper);font-family:Arial,"Microsoft YaHei",sans-serif;position:relative;overflow:hidden;text-align:left;isolation:isolate}
+.hideout-reader *{box-sizing:border-box}
+.hideout-reader [hidden]{display:none!important}
+.hideout-reader button{font:inherit;font-size:13px;line-height:1.35;color:var(--reader-ink);background:transparent;border:0;box-shadow:none;border-radius:0;transform:none;clip-path:none;cursor:pointer;text-align:left;padding:9px 11px;white-space:normal;min-height:36px}
+.hideout-reader button:before,.hideout-reader button:after{display:none!important}
+.hideout-reader button:hover{background:#17171b0b}
+.hideout-reader button:active{transform:translateY(1px)}
+.hideout-reader button:focus-visible,.hideout-reader input:focus-visible,.hideout-reader select:focus-visible,.hideout-reader .reader-viewport:focus-visible{outline:2px solid var(--reader-red);outline-offset:3px}
+.hideout-reader button:disabled{opacity:.35;cursor:default;transform:none}
+.hideout-reader .reader-primary{background:var(--reader-red);color:#fff;font-weight:700;padding:12px 17px;border:2px solid var(--reader-ink);box-shadow:3px 3px 0 var(--reader-ink);white-space:nowrap}
+.hideout-reader .reader-primary:hover{background:#bf002c}
+.hideout-reader h2,.hideout-reader h3,.hideout-reader h4,.hideout-reader p{color:inherit;margin:0;text-shadow:none;transform:none;letter-spacing:normal}
+.hideout-reader .reader-eyebrow{font:10px/1.4 Arial,sans-serif;letter-spacing:1.5px;font-weight:700;color:#625b53}
+.hideout-reader .reader-loading{padding:45px 30px;font-size:14px;line-height:2}
+.hideout-reader .reader-shelf{display:grid;grid-template-columns:1fr 1fr;height:100%;padding-bottom:26px;position:relative}
+.hideout-reader .reader-shelf-list{padding:36px 30px 20px;border-right:1px solid #17171b23;overflow:auto;scrollbar-width:thin}
+.hideout-reader .reader-shelf-list h2{font-size:clamp(26px,3.1vw,43px);font-weight:850;line-height:1.2;margin:25px 0 14px;letter-spacing:-1px}
+.hideout-reader .reader-shelf-copy{font-size:12px;line-height:1.8;color:#69645c}
+.hideout-reader .reader-book-list{margin:26px 0 23px;border-top:2px solid var(--reader-ink)}
+.hideout-reader .reader-book-row{display:grid;grid-template-columns:22px 1fr 18px;gap:10px;width:100%;align-items:center;padding:16px 8px;border-bottom:1px solid #17171b25}
+.hideout-reader .reader-book-row strong{display:block;font-size:14px;line-height:1.5}
+.hideout-reader .reader-book-row small{display:block;font-size:10px;line-height:1.6;margin-top:5px;opacity:.72}
+.hideout-reader .reader-book-row.is-selected{background:var(--reader-ink);color:var(--reader-paper);box-shadow:inset 4px 0 var(--reader-red)}
+.hideout-reader .reader-book-index{font-size:10px;align-self:start;margin-top:4px;opacity:.6}
+.hideout-reader .reader-file-hint{font-size:10px;line-height:1.8;color:#6a645c;margin-top:12px}
+.hideout-reader .reader-book-detail{overflow:auto;padding:36px 34px 20px;scrollbar-width:thin}
+.hideout-reader .reader-cover{width:150px;aspect-ratio:3/4;margin:23px 0;background:var(--reader-ink);color:var(--reader-paper);border-left:9px solid var(--reader-red);outline:1px solid #17171b;outline-offset:4px;padding:16px 13px;display:flex;flex-direction:column;box-shadow:7px 7px 0 #17171b18;position:relative;overflow:hidden}
+.hideout-reader .reader-cover:after{content:"";width:150px;height:34px;position:absolute;background:var(--reader-red);bottom:28px;left:35px;transform:rotate(-28deg);opacity:.95}
+.hideout-reader .reader-cover span{font-size:7px;letter-spacing:1.8px}
+.hideout-reader .reader-cover strong{font-size:23px;line-height:1.4;margin-top:22px;position:relative;z-index:1;max-width:110px}
+.hideout-reader .reader-cover i{font:11px/1 Arial,sans-serif;margin-top:auto;position:relative;z-index:1}
+.hideout-reader .reader-book-detail h3{font-size:22px;line-height:1.4;margin-bottom:8px}
+.hideout-reader .reader-book-detail>p{font-size:12px;line-height:1.8;color:#625b53;margin-bottom:17px}
+.hideout-reader .reader-book-detail blockquote{white-space:pre-wrap;font-size:12px;line-height:1.8;border-left:2px solid var(--reader-red);padding-left:12px;margin:16px 0;max-height:130px;overflow:auto}
+.hideout-reader .reader-status{font-size:10px;line-height:16px;color:#756d63;position:absolute;bottom:3px;left:28px;right:20px;min-height:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;pointer-events:none}
+.hideout-reader .reader-status[data-error=true]{color:#b00028}
+.hideout-reader .reader-session{height:100%;min-width:0;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:54px minmax(0,1fr) 48px 20px;padding:0 25px;position:relative}
+.hideout-reader .reader-toolbar{display:flex;align-items:center;gap:12px;border-bottom:1px solid #17171b32;min-width:0}
+.hideout-reader .reader-back{font-weight:700;white-space:nowrap;padding-left:0}
+.hideout-reader .reader-current-title{flex:1;min-width:0;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;font-size:11px;color:#615a52}
+.hideout-reader .reader-tools{display:flex;gap:1px}
+.hideout-reader .reader-tools button{font-size:12px;padding:7px 9px;white-space:nowrap}
+.hideout-reader .reader-body{min-height:0;min-width:0;position:relative;padding:23px 8px 15px}
+.hideout-reader[data-view=reading][data-mode=pages][data-columns="2"] .reader-body::before{content:"";position:absolute;inset:8px 0;z-index:0;pointer-events:none;background:linear-gradient(90deg,#ffffff42 0%,#ffffff12 32%,#7561480d 46%,#7561481f 49.7%,#f6f2e800 50%,#ffffff65 52%,#ffffff1f 70%,#75614808 100%);box-shadow:inset 0 1px 0 #ffffff70,inset 0 -1px 0 #65533b1c;border-radius:2px 2px 5px 5px}
+/* A tapered trough with a dark fold and reflected light on the right leaf.
+   It occupies only the empty gutter, leaving 28px clear before either text edge. */
+.hideout-reader[data-view=reading][data-mode=pages][data-columns="2"] .reader-body::after{content:"";position:absolute;top:6px;bottom:6px;left:50%;width:56px;transform:translateX(-50%);z-index:2;pointer-events:none;border-radius:48% / 2%;background:linear-gradient(90deg,#4b3b2900 0%,#4b3b290b 12%,#4b3b2926 34%,#3023194d 46%,#21180f80 49%,#21180f61 50.5%,#fff9efb8 53%,#fff9ef52 64%,#4b3b2909 84%,#4b3b2900 100%);box-shadow:-8px 0 18px -14px #34251b80,8px 0 18px -14px #fff9efb3}
+.hideout-reader .reader-viewport{height:100%;width:100%;min-width:0;overflow:hidden;position:relative;z-index:1;outline:0;overscroll-behavior:contain}
+.hideout-reader[data-mode=pages] .reader-body{cursor:pointer}
+.hideout-reader .reader-text{cursor:text}
+.hideout-reader .reader-turn-layer{position:absolute;inset:8px 0;z-index:3;opacity:0;overflow:hidden;pointer-events:auto;cursor:default}
+.hideout-reader .reader-turn-layer[data-ready=true]{opacity:1}
+.hideout-reader .reader-turn-hold{position:absolute;inset:0;display:flex}
+.hideout-reader .reader-turn-staging{position:absolute;inset:0;visibility:hidden}
+.hideout-reader .reader-turn-book{position:absolute!important;inset:0;width:100%;height:100%}
+.hideout-reader .reader-turn-book .stf__wrapper{height:100%;padding-bottom:0!important}
+.hideout-reader .reader-turn-leaf{position:relative;flex:none;overflow:hidden;background:var(--reader-paper);box-shadow:inset 0 1px #ffffff70,inset 0 -1px #65533b1c}
+.hideout-reader .reader-turn-spread{position:absolute;top:0;overflow:hidden;background:linear-gradient(90deg,#ffffff42 0%,#ffffff12 32%,#7561480d 46%,#7561481f 49.7%,#f6f2e800 50%,#ffffff65 52%,#ffffff1f 70%,#75614808 100%)}
+.hideout-reader .reader-turn-viewport{position:absolute;overflow:hidden}
+.hideout-reader .reader-turn-left{box-shadow:inset -14px 0 18px -15px #30231980}
+.hideout-reader .reader-turn-right{box-shadow:inset 14px 0 18px -15px #30231955}
+.hideout-reader .reader-turn-single .reader-turn-spread{background:var(--reader-paper)}
+.hideout-reader[data-turning=forward] .reader-body::after,.hideout-reader[data-turning=back] .reader-body::after{opacity:0}
+.hideout-reader .reader-text{height:100%;width:100%;padding:0 calc(var(--reader-column-gap) / 2);column-count:1;column-gap:var(--reader-column-gap);column-fill:auto;font-family:"Noto Serif SC","Songti SC",SimSun,serif;font-size:var(--reader-font-size);line-height:var(--reader-line-height);color:var(--reader-ink);text-align:justify;overflow:visible;will-change:transform}
+.hideout-reader[data-columns="2"] .reader-text{column-count:2}
+.hideout-reader .reader-text h2{font-size:1.32em;font-weight:700;line-height:1.5;margin:0 0 1.3em;break-after:avoid;text-align:left}
+.hideout-reader .reader-text p{font:inherit;line-height:var(--reader-line-height);text-indent:2em;margin:0 0 .85em;orphans:2;widows:2;overflow-wrap:anywhere}
+.hideout-reader .reader-text ::selection{background:#efb7c3}
+.hideout-reader ::highlight(hideout-reader-highlight){background:#efb7c3;color:#17171b}
+.hideout-reader .reader-chapter-end{font-size:12px;text-align:center;margin:24px 0 30px;letter-spacing:3px;color:#80766b;break-inside:avoid}
+.hideout-reader[data-format=txt][data-mode=scroll] .reader-viewport{overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
+.hideout-reader[data-mode=scroll] .reader-text{height:auto;columns:auto;max-width:36em;margin:auto;padding:0 18px;transform:none!important;will-change:auto}
+.hideout-reader .reader-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #17171b26}
+.hideout-reader .reader-footer button{font-size:11px;white-space:nowrap}
+.hideout-reader .reader-progress{font-size:10px;line-height:1.5;text-align:center;color:#6a6258}
+.hideout-reader .reader-drawer{position:absolute;inset:0 0 0 auto;width:min(330px,90%);z-index:4;background:var(--reader-paper);border-left:3px solid var(--reader-ink);box-shadow:-10px 0 0 #17171b12;overflow:auto;padding:18px 20px;scrollbar-width:thin}
+.hideout-reader .reader-drawer-heading{display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--reader-ink);padding-bottom:10px;margin-bottom:19px}
+.hideout-reader .reader-drawer-heading h3{font-size:17px;line-height:1.4}
+.hideout-reader .reader-drawer-heading button{font-size:24px;padding:0 6px}
+.hideout-reader .reader-toc{display:flex;flex-direction:column;gap:4px}
+.hideout-reader .reader-toc button{font-size:13px;line-height:1.6;border-bottom:1px solid #17171b15;padding:13px 0;display:flex;gap:14px}
+.hideout-reader .reader-toc span{font-size:9px;opacity:.6;padding-top:3px}
+.hideout-reader .reader-drawer h4{font-size:12px;margin:24px 0 12px}
+.hideout-reader .reader-mark{display:flex;border-bottom:1px solid #17171b25;align-items:center}
+.hideout-reader .reader-mark button:first-child{flex:1;padding-left:0;font-size:12px;line-height:1.7}
+.hideout-reader .reader-mark button:last-child{font-size:20px;color:#7a6c60}
+.hideout-reader .reader-empty{font-size:12px;line-height:1.8;color:#72695e}
+.hideout-reader .reader-excerpt{border-left:2px solid var(--reader-red);padding-left:12px;margin:20px 0}
+.hideout-reader .reader-excerpt blockquote{font:14px/1.9 "Songti SC",SimSun,serif;margin:0 0 8px;white-space:pre-wrap}
+.hideout-reader .reader-excerpt button{font-size:10px;padding:5px 6px 5px 0;min-height:28px}
+.hideout-reader .reader-drawer label{font-size:12px;line-height:1.5;margin:22px 0;display:block;font-weight:700;color:var(--reader-ink)}
+.hideout-reader .reader-drawer output{float:right;font-weight:400;color:#6a6258}
+.hideout-reader .reader-drawer input[type=range]{appearance:auto;width:100%;margin:15px 0 0;accent-color:var(--reader-red);background:transparent;padding:0;border:0;height:16px;box-shadow:none;min-height:0}
+.hideout-reader .reader-drawer select{display:block;width:100%;margin-top:10px;background:var(--reader-paper);color:var(--reader-ink);border:1px solid #17171b55;border-radius:0;padding:10px;font:12px Arial,"Microsoft YaHei",sans-serif}
+.hideout-reader .reader-excerpt-bar{position:absolute;bottom:70px;left:50%;transform:translateX(-50%);background:var(--reader-ink);color:var(--reader-paper);display:flex;align-items:center;gap:4px;z-index:5;border-bottom:3px solid var(--reader-red);padding:6px 9px;box-shadow:4px 4px 0 #17171b33;max-width:95%}
+.hideout-reader .reader-excerpt-bar span{font-size:10px;white-space:nowrap;opacity:.6;margin:0 8px}
+.hideout-reader .reader-excerpt-bar button{color:var(--reader-paper);white-space:nowrap;font-size:11px}
+.hideout-reader .reader-excerpt-bar button:hover{background:#fff2}
+.hideout-reader .epub-container{scrollbar-width:thin}
+.hideout-reader[data-format=epub][data-mode=scroll] .epub-container{overflow-x:hidden!important}
+.hideout-reader iframe{border:0}
+@media(max-width:700px){.hideout-reader .reader-shelf{grid-template-columns:1fr;overflow:auto;display:block;padding-bottom:32px}.hideout-reader .reader-shelf-list{padding:28px 24px 24px;border-right:0;border-bottom:1px solid #17171b25;overflow:visible}.hideout-reader .reader-shelf-list h2{font-size:31px;margin-top:18px}.hideout-reader .reader-shelf-list h2 br{display:none}.hideout-reader .reader-book-list{margin:22px 0}.hideout-reader .reader-book-detail{padding:24px;overflow:visible}.hideout-reader .reader-cover{float:right;width:95px;margin:0 0 16px 16px;aspect-ratio:3/4}.hideout-reader .reader-cover strong{font-size:16px;margin-top:14px}.hideout-reader .reader-cover span{font-size:5px}.hideout-reader .reader-book-detail h3{font-size:19px;margin-top:18px}.hideout-reader .reader-session{padding:0 14px;grid-template-rows:52px minmax(0,1fr) 45px 19px}.hideout-reader .reader-body{padding:19px 3px 12px}.hideout-reader .reader-toolbar{gap:6px}.hideout-reader .reader-current-title{font-size:10px}.hideout-reader .reader-tools button{padding:6px;font-size:11px}.hideout-reader .reader-back{font-size:11px}.hideout-reader .reader-status{left:16px;font-size:9px}.hideout-reader .reader-excerpt-bar span{display:none}.hideout-reader .reader-footer button{font-size:10px}.hideout-reader .reader-progress{font-size:9px}.hideout-reader[data-mode=scroll] .reader-text{padding:0 8px}}
+@media(prefers-reduced-motion:reduce){.hideout-reader *{scroll-behavior:auto!important}}

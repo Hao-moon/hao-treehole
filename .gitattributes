@@ -1,0 +1,11 @@
+* text=auto
+*.js text eol=lf
+*.mjs text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.png binary
+*.webp binary
+*.glb binary
+*.hdr binary
+*.wav binary
