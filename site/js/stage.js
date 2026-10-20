@@ -65,7 +65,7 @@ export function preloadStageImage(src) {
   const promise=new Promise((resolve, reject) => {
     const im = new Image();
     im.decoding = 'async';
-    im.onload = () => resolve(im);
+    im.onload = () => im.decode().then(()=>resolve(im),()=>resolve(im));
     im.onerror = () => reject(new Error(`加载失败：${src}`));
     im.src = src;
   });

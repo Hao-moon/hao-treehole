@@ -78,14 +78,14 @@ async function changeWorld(to,{history:writeHistory=true}={}){
     room?.dispose();room=null;computer.dispose();applyWorld(id);computer=createComputer({notify});
     for(const canvas of document.querySelectorAll('#room > canvas')){const fresh=canvas.cloneNode(false);fresh.hidden=canvas.id==='empty-turntable-slot';fresh.style.visibility='';canvas.replaceWith(fresh);}
     $('#fallback').hidden=true;await computer.ready;
-    room=await createRoom(open,notify,figureLibrary,discMotion,{computer,soundscape});room.turntable?.update(player.snapshot());
+    room=await createRoom(open,notify,figureLibrary,discMotion,{computer,soundscape,transition:true});room.turntable?.update(player.snapshot());
   }
   try{await rebuild(to);if(writeHistory)history.pushState({haoWorld:to},'',worldHref(to));}
   catch(error){await rebuild(previous);history.replaceState(null,'',worldHref(previous));throw error;}
   finally{delete document.documentElement.dataset.worldSwitching;}
   document.title=worldTitle;
 }
-configureWorldTransitions({capture:()=>room?.capture({asCanvas:true}),change:changeWorld,notify});
+configureWorldTransitions({capture:()=>room?.capture({asCanvas:true}),change:changeWorld,prepare:()=>room?.prepareReveal(),suspend:()=>room?.setTransitioning(true),resume:()=>room?.setTransitioning(false),notify});
 function renderAbout(){body.innerHTML=`<div class="about-layout"><section class="about-letter"><span class="paper-caption">一封写给来访者的短信</span><h2>喜欢的东西，慢慢放进来。</h2><p>这是 hao 的个人空间。读完一章，听一首歌，把喜欢的画面和句子钉在墙上。</p><p>书里可以读全文，耳机里有自己的声景。屏幕能换一张喜欢的画，窗边的叶子也会轻轻回应。</p><p class="small-copy">拖动平移，滚轮拉近。聚焦桌面后可用方向键环顾，＋／− 缩放，Home 回到全景。右下「探索」提供全部物件入口。</p></section><section class="about-links"><span class="paper-caption">收藏保管处</span><h3>带走你的收藏</h3><p class="small-copy">收藏保存在当前浏览器。这里导出原有书单、游戏与历史记录；墙板在各收藏夹中备份，阅读器可导出当前书摘录。电子书、歌曲、模型与自选屏保请保留源文件。</p><div class="button-row"><button id="export-content" class="secondary">导出原有收藏</button><button id="import-content" class="text-button">导入收藏备份</button></div><input id="backup-file" type="file" accept="application/json,.json" hidden><p class="small-copy">日常存档已从桌面退场，以前留下的记录仍保存在备份中。</p></section></div>`;
   $('#export-content').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(content,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='hao的树洞-原有收藏备份.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);notify('原有书单、游戏与历史记录已导出');};
   $('#import-content').onclick=()=>$('#backup-file').click();$('#backup-file').onchange=safe(async event=>{const file=event.target.files[0];if(!file)return;if(file.size>32*1024*1024)throw new Error('收藏备份请小于 32 MB');let data;try{data=JSON.parse(await file.text());}catch{throw new Error('请选择树洞导出的 JSON 备份');}await persist(mergeContent(content,validateImport(data)));notify('原有收藏已合并');});

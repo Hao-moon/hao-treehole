@@ -69,6 +69,7 @@ export async function createRoomPlant(canvas,onChange=()=>{}){
       renderer.render(scene,camera);
     },
     hitPart,hit:point=>hitPart(point)!==null,
+    async warmup(){await environment.ready;await renderer.compileAsync(scene,camera);},
     touch:()=>motion.touch(),setActive:value=>motion.setActive(value),
     imageAnchor(){
       const p=new THREE.Box3().setFromObject(plant).getCenter(new THREE.Vector3()).project(baseCamera);

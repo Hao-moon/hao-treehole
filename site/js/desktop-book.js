@@ -69,6 +69,7 @@ export async function createDesktopBook(canvas){
   }
   const light=addUrbanDesktopLight(scene,renderer),environment=attachUrbanEnvironment(scene,renderer,render,.5);
   return {
+    async warmup(){await environment.ready;await renderer.compileAsync(scene,camera);},
     draw(view,vp,img,scale){size();camera.setViewOffset(img.w,img.h,view.cx-vp.w/(2*scale),view.cy-vp.h/(2*scale)+(cfg.offsetY||0)*img.w/cfg.width,vp.w/scale,vp.h/scale);render();},
     async open(dialog){panel=dialog;dialog.append(canvas);canvas.classList.add('held-book');return move(1);},
     async close(){const done=await move(0);if(done){panel=null;canvas.classList.remove('held-book');home.append(canvas);render();}return done;},

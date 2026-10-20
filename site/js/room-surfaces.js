@@ -3,9 +3,10 @@ import {imageToScreen,viewScale} from './geometry.js';
 import {surfaceMatrix} from './surface-projection.js';
 import {createRoomAtmosphere} from './room-atmosphere.js';
 import {drawProjectedRaster} from './scene-capture.js';
+import {readSceneJSON} from './scene-resources.js';
 
 export async function createRoomSurfaces(container,{computer,soundscape,notify=()=>{}}={}){
-  const response=await fetch('/assets/scene/scene-interactions.json');if(!response.ok)throw new Error('物件表面资料未能读取');const config=await response.json();
+  const config=await readSceneJSON('/assets/scene/scene-interactions.json');
   const root=document.createElement('div');root.className='room-surfaces';root.setAttribute('aria-hidden','true');
   root.innerHTML='<div class="room-live-screen"><img alt=""><div class="room-screen-sleep"></div></div><i class="room-power-led"></i><i class="room-sound-led" hidden></i>'+(ghostWorld?`<div class="room-wall-lift" hidden><img class="room-wall-paper" alt=""><img class="room-wall-photo" src="${worldAssetRoot}city-study.png" alt="" hidden></div>`:'<img class="room-wall-lift" alt="" hidden>');
   container.insertBefore(root,container.querySelector('#desktop-figure'));
@@ -69,5 +70,5 @@ export async function createRoomSurfaces(container,{computer,soundscape,notify=(
       context.fillStyle=getComputedStyle(node).backgroundColor;context.beginPath();context.arc(p.x,p.y,radius,0,Math.PI*2);context.fill();
     }
   }
-  return {draw,capture,setActive:value=>atmosphere.setActive(value),setDeckHeld:value=>atmosphere.setDeckHeld(value),setHover(value){if(hover===value)return;hover=value;if(lastFrame)draw(...lastFrame);},hide(){root.hidden=true;atmosphere.setActive(false);},dispose(){offComputer();offSound();atmosphere.dispose();root.remove();}};
+  return {draw,capture,ready:()=>photo.decode().catch(()=>{}),setActive:value=>atmosphere.setActive(value),setDeckHeld:value=>atmosphere.setDeckHeld(value),setHover(value){if(hover===value)return;hover=value;if(lastFrame)draw(...lastFrame);},hide(){root.hidden=true;atmosphere.setActive(false);},dispose(){offComputer();offSound();atmosphere.dispose();root.remove();}};
 }

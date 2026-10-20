@@ -6,10 +6,10 @@ let radiance;
 // The probe is rendered from this exact room, not a stock studio environment.
 // PMREM is Three's roughness-aware environment convolution; no screen filter.
 export function attachUrbanEnvironment(scene,renderer,onReady=()=>{},intensity=.7){
-  if(!ghostWorld)return {dispose(){}};
+  if(!ghostWorld)return {ready:Promise.resolve(),dispose(){}};
   let disposed=false,target=null;
   radiance||=new HDRLoader().loadAsync(worldAssetRoot+'room-environment.hdr');
-  radiance.then(texture=>{
+  const ready=radiance.then(texture=>{
     if(disposed)return;
     texture.mapping=THREE.EquirectangularReflectionMapping;
     const generator=new THREE.PMREMGenerator(renderer);
@@ -17,7 +17,7 @@ export function attachUrbanEnvironment(scene,renderer,onReady=()=>{},intensity=.
     scene.environment=target.texture;scene.environmentIntensity=intensity;
     onReady();
   }).catch(error=>console.warn('Room reflections unavailable; direct lighting retained.',error));
-  return {dispose(){disposed=true;if(target){scene.environment=null;target.dispose();}}};
+  return {ready,dispose(){disposed=true;if(target){scene.environment=null;target.dispose();}}};
 }
 
 export function addUrbanDesktopLight(scene,renderer){

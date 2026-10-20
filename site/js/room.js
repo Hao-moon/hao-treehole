@@ -1,4 +1,5 @@
 import { createStage } from './stage.js';
+import {readSceneJSON,readHitMap} from './scene-resources.js';
 import {ghostWorld, worldAssetRoot, themeAsset} from './world-theme.js';
 import {createDesktopFigure} from './desktop-figure.js';
 import {createDesktopBook} from './desktop-book.js';
@@ -11,14 +12,13 @@ const names={computer:'打开电脑',music:'播放唱片',books:'拿起书本',h
 const destinations={computer:'computer',music:'music',books:'books',headphones:'headphones',mask:'world',board:'about',asuka:'asuka',tower:'tower',games:'games',plant:'plant','board-gallery':'board-gallery','board-projects':'board-projects','board-links':'board-links','board-quotes':'board-quotes'};
 const image = src => new Promise((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=()=>reject(new Error('场景图片未能加载'));i.src=src;});
 export async function createRoom(open,notify,figureLibrary,discMotion,services={}) {
-  let disposed=false,hiTimer;
+  let disposed=false,hiTimer,suspended=!!services.transition,hiLoaded=false;
   const liveJobs=[];
   const abort=new AbortController(),cleanups=[];
   const on=(node,event,callback,options={})=>node.addEventListener(event,callback,{...options,signal:abort.signal});
   const canvas=document.querySelector('#scene'), label=document.querySelector('#hot-label'),markers=document.querySelector('#object-markers');
   markers.replaceChildren();
-  const response=await fetch('/assets/scene/scene.json');if(!response.ok)throw new Error('场景资料未能加载');
-  const metadata=await response.json(),img={w:metadata.width,h:metadata.height},hots=metadata.hots;
+  const metadata=await readSceneJSON('/assets/scene/scene.json'),img={w:metadata.width,h:metadata.height},hots=structuredClone(metadata.hots);
   let vp={w:innerWidth,h:innerHeight},view={cx:img.w/2,cy:img.h/2,zoom:1},previous=null,restoring=null,hover=0,stage=null,animation=null,raf=0,showHints=false,dpr=Math.min(devicePixelRatio,2),dirty=true;
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   let figureStage=null,bookStage=null,plantStage=null,turntableStage=null,surfaces=null;
@@ -40,9 +40,7 @@ export async function createRoom(open,notify,figureLibrary,discMotion,services={
     update:state=>turntableStage?.update(state)
   };
   hots.plant={index:11,center:[7000,2800],dynamic:true};
-  const hotImage=await image('/assets/scene/hot-base.png');
-  const sample=document.createElement('canvas');sample.width=hotImage.width;sample.height=hotImage.height;
-  const ctx=sample.getContext('2d',{willReadFrequently:true});ctx.drawImage(hotImage,0,0);const pixels=ctx.getImageData(0,0,sample.width,sample.height).data;
+  const sample=await readHitMap(),hotImage=sample.image,pixels=sample.pixels;
   function staticFallback(){
     surfaces?.hide();
     stage=null;
@@ -65,13 +63,13 @@ export async function createRoom(open,notify,figureLibrary,discMotion,services={
   for(const [key,hot] of Object.entries(hots)){if(!destinations[key])continue;const marker=document.createElement('span');marker.className='marker';marker.dataset.key=key;marker.textContent=names[key]||key;markers.append(marker);}
   function updateMarkers(){for(const m of markers.children){const hot=hots[m.dataset.key];const p=imageToScreen({x:hot.center[0],y:hot.center[1]},view,vp,img);m.style.left=p.x+'px';m.style.top=p.y+'px';m.hidden=p.x<0||p.x>vp.w||p.y<100||p.y>vp.h-90;}}
   function positionWorldButton(){if(!stage){document.querySelector('#world-button').hidden=true;return;}const hot=hots.mask,p=imageToScreen({x:hot.center[0],y:hot.center[1]},view,vp,img),el=document.querySelector('#world-button'),scale=viewScale(view,vp,img);el.style.left=p.x+'px';el.style.top=p.y+'px';el.style.width=Math.max(44,(hot.bbox[2]-hot.bbox[0])*scale)+'px';el.style.height=Math.max(44,(hot.bbox[3]-hot.bbox[1])*scale)+'px';el.hidden=p.x<0||p.x>vp.w||p.y<0||p.y>vp.h;}
-  function frame(now){raf=0;if(disposed||document.hidden)return;
+  function frame(now,force=false){raf=0;if(disposed||document.hidden||(suspended&&!force))return;
     if(animation){const t=Math.min((now-animation.start)/animation.duration,1);view=clampView(lerpView(animation.from,animation.to,easeInOut(t)),vp,img);if(t===1){animation=null;restoring=null;}dirty=true;}
     if(dirty||hover){stage?.draw({a:sceneStyle,b:sceneStyle,t:0,view,scale:viewScale(view,vp,img)*dpr,time:reduced.matches?0:now/1000,hover,hi:[1,1,.94]});figureStage?.draw(view,vp,img,viewScale(view,vp,img));bookStage?.draw(view,vp,img,viewScale(view,vp,img));plantStage?.draw(view,vp,img,viewScale(view,vp,img));turntableStage?.draw(view,vp,img,viewScale(view,vp,img));surfaces?.draw(view,vp,img);surfaces?.setHover(hover);dirty=false;positionWorldButton();if(showHints)updateMarkers();}
     if(deckHeld)drawSlot();
-    if(animation||(hover&&!reduced.matches))raf=requestAnimationFrame(frame);
+    if(!suspended&&(animation||(hover&&!reduced.matches)))raf=requestAnimationFrame(frame);
   }
-  function invalidate(){if(disposed)return;dirty=true;if(!raf)raf=requestAnimationFrame(frame);}
+  function invalidate(){if(disposed)return;dirty=true;if(!suspended&&!raf)raf=requestAnimationFrame(frame);}
   function animate(to){if(reduced.matches){view=to;animation=null;restoring=null;}else animation={from:{...view},to,start:performance.now(),duration:560};hover=0;label.hidden=true;invalidate();}
   function reset(){restoring=null;animate(clampView({cx:img.w/2,cy:img.h/2,zoom:1},vp,img));}
   function resize(){vp={w:innerWidth,h:innerHeight};dpr=Math.min(devicePixelRatio,2);view=clampView(view,vp,img);stage?.resize(vp,dpr);invalidate();}
@@ -96,7 +94,14 @@ export async function createRoom(open,notify,figureLibrary,discMotion,services={
   on(window,'resize',resize);on(document,'visibilitychange',invalidate);
   on(canvas,'webglcontextlost',e=>{e.preventDefault();staticFallback();notify('画面已切换为静态预览，刷新可重新连接');});
   invalidate();
-  if(stage)hiTimer=setTimeout(()=>{if(!disposed)stage.loadStyle(sceneStyle,true).then(invalidate).catch(()=>notify('8K 画面未能加载，当前保持 4K 画质'));},2500);
+  function scheduleHighResolution(){
+    clearTimeout(hiTimer);
+    if(stage&&!hiLoaded&&!suspended)hiTimer=setTimeout(()=>{
+      if(disposed||suspended)return;
+      hiLoaded=true;stage.loadStyle(sceneStyle,true).then(invalidate).catch(()=>notify('8K 画面未能加载，当前保持 4K 画质'));
+    },2500);
+  }
+  scheduleHighResolution();
   if(stage&&discMotion)liveJobs.push((async()=>{try{turntableStage=await createDesktopTurntable(document.querySelector('#desktop-turntable'),discMotion);}catch{notify('动态唱盘暂时未能加载，音乐播放仍可使用');}})());
   if(stage)liveJobs.push((async()=>{try{bookStage=await createDesktopBook(document.querySelector('#desktop-book'));}catch{notify('立体书暂时未能加载，仍可从书籍入口阅读');}})());
   if(stage&&figureLibrary)liveJobs.push((async()=>{
@@ -106,7 +111,18 @@ export async function createRoom(open,notify,figureLibrary,discMotion,services={
   await Promise.all(liveJobs);
   invalidate();
 
-  surfaces?.setActive(true);
+  plantStage?.setActive(!suspended);turntableStage?.setActive(!suspended);surfaces?.setActive(!suspended);
+  function setTransitioning(value){
+    suspended=!!value;
+    if(suspended){cancelAnimationFrame(raf);raf=0;clearTimeout(hiTimer);}
+    plantStage?.setActive(!suspended);turntableStage?.setActive(!suspended);surfaces?.setActive(!suspended);
+    if(!suspended){scheduleHighResolution();invalidate();}
+  }
+  async function prepareReveal(){
+    // Settle reflections and compile programs before the first visible frame.
+    await Promise.all([figureStage?.warmup(),bookStage?.warmup(),plantStage?.warmup(),turntableStage?.warmup(),surfaces?.ready()]);
+    dirty=true;frame(performance.now(),true);
+  }
   function capture({asCanvas=false}={}){
     const captureView={cx:img.w/2,cy:img.h/2,zoom:1},scale=viewScale(captureView,vp,img);
     const snapshot=document.createElement('canvas'),ratio=Math.min(1,1600/vp.w);
@@ -140,7 +156,7 @@ export async function createRoom(open,notify,figureLibrary,discMotion,services={
     }
   }
   function anchor(section,source=view){const key={computer:'computer',notes:'computer','board-gallery':'board-gallery','board-projects':'board-projects','board-links':'board-links','board-quotes':'board-quotes',music:'music',headphones:'headphones',books:'books',world:'mask',about:'board',asuka:'asuka',tower:'tower',keyboard:'keyboard',games:'games',plant:'plant'}[section],hot=hots[key];if(!hot)return {x:vp.w/2,y:vp.h/2};const p=imageToScreen({x:hot.center[0],y:hot.center[1]},source,vp,img);return {x:Math.max(30,Math.min(vp.w-30,p.x)),y:Math.max(30,Math.min(vp.h-30,p.y))};}
-  return {reset,anchor,capture,dispose(){if(disposed)return;disposed=true;clearTimeout(hiTimer);abort.abort();cancelAnimationFrame(raf);cleanups.forEach(fn=>fn());surfaces?.dispose();figureStage?.dispose();bookStage?.dispose();plantStage?.dispose();turntableStage?.dispose();stage?.dispose();markers.replaceChildren();},get book(){return bookStage;},get turntable(){return turntableStage?desktopDeck:null;},focus(section){
+  return {reset,anchor,capture,setTransitioning,prepareReveal,dispose(){if(disposed)return;disposed=true;clearTimeout(hiTimer);abort.abort();cancelAnimationFrame(raf);cleanups.forEach(fn=>fn());surfaces?.dispose();figureStage?.dispose();bookStage?.dispose();plantStage?.dispose();turntableStage?.dispose();stage?.dispose();markers.replaceChildren();},get book(){return bookStage;},get turntable(){return turntableStage?desktopDeck:null;},focus(section){
     plantStage?.setActive(false);surfaces?.setActive(false);
     // Reopening while the camera is returning must use its destination, not accumulate zoom.
     if(!previous)previous={...(restoring||view)};

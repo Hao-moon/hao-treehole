@@ -24,9 +24,11 @@ export async function createDesktopFigure(canvas,library,invalidate){
   const unsubscribe=library.subscribe(entry=>setModel(entry).catch(()=>{}));
   await setModel(library.current());
   return {
+    warmup:()=>renderer.compileAsync(scene,camera),
     sourceSize:{w:config.width,h:config.height},
     draw(view,size,img,scale){
-      vp=size;renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(vp.w,vp.h,false);
+      vp=size;const dpr=Math.min(devicePixelRatio,2);
+      if(canvas.width!==Math.round(vp.w*dpr)||canvas.height!==Math.round(vp.h*dpr)){renderer.setPixelRatio(dpr);renderer.setSize(vp.w,vp.h,false);}
       camera.setViewOffset(img.w,img.h,view.cx-vp.w/(2*scale),view.cy-vp.h/(2*scale)+(config.offsetY||0)*img.w/config.width,vp.w/scale,vp.h/scale);
       renderer.render(scene,camera);
     },

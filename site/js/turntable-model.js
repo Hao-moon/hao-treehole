@@ -85,8 +85,8 @@ export async function createDesktopTurntable(canvas,motor){
   const urbanLight=addUrbanDesktopLight(scene,renderer),environment=attachUrbanEnvironment(scene,renderer,()=>render());
   const camera=new THREE.PerspectiveCamera(config.fov,config.width/config.height,.01,100);
   new THREE.Matrix4().fromArray(config.matrix).decompose(camera.position,camera.quaternion,camera.scale);
-  let ready=false,size='',disposed=false,skinVersion=0,held=false,lastState={};
-  function render(){if(ready&&!document.hidden)renderer.render(scene,camera);}
+  let ready=false,size='',disposed=false,skinVersion=0,held=false,lastState={},active=true;
+  function render(force=false){if(!disposed&&ready&&(active||force)&&!document.hidden)renderer.render(scene,camera);}
   const unsubscribe=motor.subscribe(state=>{
     model.setAngle(state.angle);model.setPowered(state.running);canvas.dataset.angle=state.angle.toFixed(4);canvas.dataset.running=String(state.running);render();
   });
@@ -98,11 +98,13 @@ export async function createDesktopTurntable(canvas,motor){
   });
   canvas.dataset.skin=getTurntableSkin();
   return {
+    async warmup(){await environment.ready;await renderer.compileAsync(scene,camera);},
+    setActive(value){active=!!value;if(active)render();},
     draw(view,vp,img,scale){
       const next=`${vp.w},${vp.h},${devicePixelRatio}`;
       if(next!==size){size=next;renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(vp.w,vp.h,false);}
       camera.setViewOffset(img.w,img.h,view.cx-vp.w/(2*scale),view.cy-vp.h/(2*scale)+(config.offsetY||0)*img.w/config.width,vp.w/scale,vp.h/scale);
-      ready=true;render();
+      ready=true;render(true);
     },
     pickupCamera(){camera.updateMatrixWorld();return {position:camera.position.clone().sub(model.root.position),quaternion:camera.quaternion.clone(),projection:camera.projectionMatrix.clone(),angle:motor.snapshot().angle};},
     snapshot:()=>motor.snapshot(),

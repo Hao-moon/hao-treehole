@@ -33,6 +33,8 @@ For a UI-only customization, do not rebuild Blender assets. Change text, CSS or 
 
 Run `node --check` on changed JS and targeted `node --test tests/<relevant>.test.mjs` files. The full fast unit suite is `node --test tests/*.test.mjs`. After changing shared room lifecycle, visually check both directions of world switching and confirm audio remains continuous. Do not read private browser storage to generate a public fixture.
 
+World switching separates preparation from the visible reveal (`transition-sequence.js`). Keep expensive renderer creation, environment processing and first renders before that reveal. `scene-resources.js` caches immutable scene data and the hit-map readback; clone data before modifying it. `room.prepareReveal()` settles the live layers, while `setTransitioning()` pauses visual work without pausing audio. High-resolution upgrades resume after the transition. For local performance checks only, append `?transitionDebug=1` (or `&transitionDebug=1`); phase timings and frame gaps are logged to the browser console, with no telemetry.
+
 ## Publishing a fork
 
 Keep the code license, upstream notices and asset attribution. Self-imported files are not automatically redistributable. Static hosting should serve `site/` at a domain root; subdirectory hosting needs base-path adaptation. The default local server is a development server, not a public production service.
